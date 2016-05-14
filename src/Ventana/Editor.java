@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -54,6 +55,8 @@ public class Editor extends JFrame {
 	private JButton btnStop;
 	private JButton btnOptions;
 	
+	private boolean play;
+	
 	public Editor() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900, 650);
@@ -63,6 +66,8 @@ public class Editor extends JFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		play = true;
 		
 		try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -249,7 +254,17 @@ public class Editor extends JFrame {
 	}
 
 	private void btnPlayActionListener(ActionEvent e) {
-		System.out.println("Play");
+		if (play == true) {
+			btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-pause-pressed.png")));
+			btnPlay.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-pause-hover.png")));
+			btnPlay.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-pause.png")));
+			play = false;
+		} else {
+			play = true;
+			btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-play-pressed.png")));
+			btnPlay.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-play-hover.png")));
+			btnPlay.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-play.png")));
+		}
 	}
 
 	private void btnNextActionListener(ActionEvent e) {
