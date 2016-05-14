@@ -3,36 +3,46 @@ package listas;
 public class Nodo {
 
 	private float amplitud;
-	private Nodo enlace;
-	
-	public Nodo(float amplitud){
+	private Nodo enlaceSiguiente;
+	private Nodo enlaceAnterior;
+
+	public Nodo(float amplitud) {
 		this.amplitud = amplitud;
-		enlace = null;
+		enlaceSiguiente = null;
+		enlaceAnterior = null;
 	}
-	
-	public Nodo(float amplitud, Nodo enlace){
+
+	public Nodo(float amplitud, Nodo enlace) {
 		this.amplitud = amplitud;
-		this.enlace = enlace;
+		this.enlaceSiguiente = enlace;
 	}
-	
-	public void setAmplitud(float amplitud){
-		if(amplitud >= -1 && amplitud <= 1){
+
+	public void setAmplitud(float amplitud) {
+		if (amplitud >= -1 && amplitud <= 1) {
 			this.amplitud = amplitud;
-		} else{
+		} else {
 			System.out.println("La amplitud debe estar entre -1 y 1");
 		}
 	}
-	
-	public void setEnlace(Nodo enlace){
-		this.enlace = enlace;
+
+	public void setEnlaceSiguiente(Nodo enlaceSiguiente) {
+		this.enlaceSiguiente = enlaceSiguiente;
 	}
-	
-	public float getAmplitud(){
+
+	public float getAmplitud() {
 		return amplitud;
 	}
-	
-	public Nodo getEnlace(){
-		return enlace;
+
+	public Nodo getEnlaceSiguiente() {
+		return enlaceSiguiente;
 	}
-	
+
+	public void setEnlaceAnterior(Nodo enlaceAnterior) {
+		this.enlaceAnterior = enlaceAnterior;
+	}
+
+	public Nodo getEnlaceAnteriror() {
+		return this.enlaceAnterior;
+	}
+
 }
