@@ -56,11 +56,11 @@ public class Splash extends JFrame {
 			public void stateChanged(ChangeEvent arg0) {
 				int progreso = progressBar.getValue();
 				if (progreso == 30)
-					lblCargandoComponentes.setText("Cargando graficadoras");
+					lblCargandoComponentes.setText("Cargando graficadoras...");
 				else if (progreso == 50)
-					lblCargandoComponentes.setText("Cargando directorios");
+					lblCargandoComponentes.setText("Cargando directorios...");
 				else if (progreso == 90)
-					lblCargandoComponentes.setText("Abriendo ventana principal");
+					lblCargandoComponentes.setText("Abriendo ventana principal...");
 				else if (progreso == 100) {
 					new Principal().frmAuditorAlpha.setVisible(true);
 					;

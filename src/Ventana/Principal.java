@@ -36,17 +36,18 @@ public class Principal {
 		frmAuditorAlpha.setTitle("AudiTor");
 		frmAuditorAlpha.setBounds(100, 100, 450, 300);
 		frmAuditorAlpha.setLocationRelativeTo(null);
+		
 		frmAuditorAlpha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icon = Toolkit.getDefaultToolkit().getImage("/src/img/icon-AudiTor.png");
 		frmAuditorAlpha.setIconImage(icon);
-
+		
 		elMenuBar();
 		decoracionVentana();
-
 	}
 
 	private void elMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(Color.WHITE);
 		frmAuditorAlpha.setJMenuBar(menuBar);
 
 		JMenu mnArchivo = new JMenu("Archivo");
@@ -70,8 +71,10 @@ public class Principal {
 
 	private void decoracionVentana() {
 		frmAuditorAlpha.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.frmAuditorAlpha.getContentPane().setBackground(Color.WHITE);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		frmAuditorAlpha.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(2, 1, 0, 0));
 
@@ -88,7 +91,7 @@ public class Principal {
 		btnNewButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-pressedx96.png"))); // NOI18N
 		btnNewButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-hoverx96.png"))); //
 
-		JLabel lblCargarArchivo = new JLabel("Cargar Archivo...");
+		JLabel lblCargarArchivo = new JLabel("Cargar Archivo");
 		lblCargarArchivo.setFont(new Font("RobotoDraft", Font.ITALIC, 26));
 		lblCargarArchivo.setBackground(Color.WHITE);
 		lblCargarArchivo.setHorizontalAlignment(SwingConstants.CENTER);
