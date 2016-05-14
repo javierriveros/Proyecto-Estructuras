@@ -75,7 +75,7 @@ public class Splash extends JFrame {
                 else if(progreso == 90)
                     lblCargandoComponentes.setText("Abriendo ventana principal");
                 else if(progreso == 100) {
-                    new Principal().frame.setVisible(true);;
+                    new Principal().frmAuditorAlpha.setVisible(true);;
                     dispose();
                 }
             }
