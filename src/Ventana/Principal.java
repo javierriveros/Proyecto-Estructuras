@@ -21,11 +21,6 @@ public class Principal {
 	JFrame frmAuditorAlpha;
 
 	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
 	 * Create the application.
 	 */
 	public Principal() {
