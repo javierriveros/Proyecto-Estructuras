@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
+
+import listas.Lista;
+
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -232,7 +235,7 @@ public class Editor extends JFrame {
 		btn.addActionListener(new Events(this));
 		btn.setToolTipText(tooltip);
 	}
-	
+		
 	public static void changeIcon(String icon) {
 		Editor.btnPlay.setIcon(new ImageIcon(Principal.class.getResource("/img/"+icon+".png")));
 		Editor.btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/"+icon+"-pressed.png")));

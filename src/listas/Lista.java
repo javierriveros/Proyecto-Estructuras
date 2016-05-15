@@ -169,6 +169,10 @@ public class Lista {
 			return Float.MAX_VALUE;
 		}
 	}
+	
+	public int getTamano(){
+		return numElementos;
+	}
 
 	@Override
 	public String toString() {

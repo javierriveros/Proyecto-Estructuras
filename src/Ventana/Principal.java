@@ -45,8 +45,10 @@ public class Principal {
 		frmAuditorAlpha = new JFrame();
 		frmAuditorAlpha.getContentPane().setBackground(Color.WHITE);
 		frmAuditorAlpha.setTitle("AudiTor");
-		frmAuditorAlpha.setBounds(100, 100, 708, 417);
-		frmAuditorAlpha.setLocationRelativeTo(null);
+		frmAuditorAlpha.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frmAuditorAlpha.setBounds(100, 100, 708, 417);
+		//frmAuditorAlpha.setLocationRelativeTo(null);
+		
 		
 		frmAuditorAlpha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
@@ -95,9 +97,10 @@ public class Principal {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		frmAuditorAlpha.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(2, 1, 0, 0));
+		panel.setLayout(new GridLayout(1, 1, 0, 0));
 
 		JButton btnAgregar = new JButton();
+		
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 				try {
@@ -107,8 +110,10 @@ public class Principal {
 					if (ruta.contains(".mp3") || ruta.contains(".wav") || ruta.contains(".aiff")) {
 
 						JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
-						Editor editorVentana = new Editor();
-						editorVentana.setVisible(true);
+						
+						//Editor editorVentana = new Editor();
+						//editorVentana.setVisible(true);
+						
 						frmAuditorAlpha.dispose();
 					} else {
 						JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",
@@ -122,23 +127,17 @@ public class Principal {
 
 			}
 		});
-		btnAgregar.setBackground(Color.WHITE);
+		
 		panel.add(btnAgregar);
 
 		// Image iconButton =
 		// Toolkit.getDefaultToolkit().getImage("src/icon.png");
-		btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconx96.png"))); // NOI18N
+		btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
 		btnAgregar.setBorder(null);
 		btnAgregar.setBorderPainted(false);
 		btnAgregar.setContentAreaFilled(false);
-		btnAgregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-pressedx96.png"))); // NOI18N
-		btnAgregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-hoverx96.png"))); //
-
-		JLabel lblCargarArchivo = new JLabel("Cargar Archivo");
-		lblCargarArchivo.setFont(new Font("RobotoDraft", Font.ITALIC, 26));
-		lblCargarArchivo.setBackground(Color.WHITE);
-		lblCargarArchivo.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblCargarArchivo);
+		btnAgregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-pressed.png"))); // NOI18N
+		btnAgregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-hover.png")));
 	}
 
 }
