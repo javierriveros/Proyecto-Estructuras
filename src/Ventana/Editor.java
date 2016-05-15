@@ -238,4 +238,215 @@ public class Editor extends JFrame {
 		Editor.btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/"+icon+"-pressed.png")));
 		Editor.btnPlay.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/"+icon+"-hover.png")));
 	}
+
+	/**
+	 * @return the panelActionButton
+	 */
+	public JPanel getPanelActionButton() {
+		return panelActionButton;
+	}
+
+	/**
+	 * @param panelActionButton the panelActionButton to set
+	 */
+	public void setPanelActionButton(JPanel panelActionButton) {
+		this.panelActionButton = panelActionButton;
+	}
+
+	/**
+	 * @return the panelPrincipal
+	 */
+	public JPanel getPanelPrincipal() {
+		return panelPrincipal;
+	}
+
+	/**
+	 * @param panelPrincipal the panelPrincipal to set
+	 */
+	public void setPanelPrincipal(JPanel panelPrincipal) {
+		this.panelPrincipal = panelPrincipal;
+	}
+
+	/**
+	 * @return the panelCenter
+	 */
+	public JPanel getPanelCenter() {
+		return panelCenter;
+	}
+
+	/**
+	 * @param panelCenter the panelCenter to set
+	 */
+	public void setPanelCenter(JPanel panelCenter) {
+		this.panelCenter = panelCenter;
+	}
+
+	/**
+	 * @return the panelGrafica
+	 */
+	public Grafica getPanelGrafica() {
+		return panelGrafica;
+	}
+
+	/**
+	 * @param panelGrafica the panelGrafica to set
+	 */
+	public void setPanelGrafica(Grafica panelGrafica) {
+		this.panelGrafica = panelGrafica;
+	}
+
+	/**
+	 * @return the panelSongButtons
+	 */
+	public JPanel getPanelSongButtons() {
+		return panelSongButtons;
+	}
+
+	/**
+	 * @param panelSongButtons the panelSongButtons to set
+	 */
+	public void setPanelSongButtons(JPanel panelSongButtons) {
+		this.panelSongButtons = panelSongButtons;
+	}
+
+	/**
+	 * @return the robotoDraftNormal
+	 */
+	public Font getRobotoDraftNormal() {
+		return robotoDraftNormal;
+	}
+
+	/**
+	 * @param robotoDraftNormal the robotoDraftNormal to set
+	 */
+	public void setRobotoDraftNormal(Font robotoDraftNormal) {
+		this.robotoDraftNormal = robotoDraftNormal;
+	}
+
+	/**
+	 * @return the robotoDraftMedium
+	 */
+	public Font getRobotoDraftMedium() {
+		return robotoDraftMedium;
+	}
+
+	/**
+	 * @param robotoDraftMedium the robotoDraftMedium to set
+	 */
+	public void setRobotoDraftMedium(Font robotoDraftMedium) {
+		this.robotoDraftMedium = robotoDraftMedium;
+	}
+
+	/**
+	 * @return the btnCopy
+	 */
+	public JButton getBtnCopy() {
+		return btnCopy;
+	}
+
+	/**
+	 * @param btnCopy the btnCopy to set
+	 */
+	public void setBtnCopy(JButton btnCopy) {
+		this.btnCopy = btnCopy;
+	}
+
+	/**
+	 * @return the btnCut
+	 */
+	public JButton getBtnCut() {
+		return btnCut;
+	}
+
+	/**
+	 * @param btnCut the btnCut to set
+	 */
+	public void setBtnCut(JButton btnCut) {
+		this.btnCut = btnCut;
+	}
+
+	/**
+	 * @return the btnPaste
+	 */
+	public JButton getBtnPaste() {
+		return btnPaste;
+	}
+
+	/**
+	 * @param btnPaste the btnPaste to set
+	 */
+	public void setBtnPaste(JButton btnPaste) {
+		this.btnPaste = btnPaste;
+	}
+
+	/**
+	 * @return the btnOpenFile
+	 */
+	public JButton getBtnOpenFile() {
+		return btnOpenFile;
+	}
+
+	/**
+	 * @param btnOpenFile the btnOpenFile to set
+	 */
+	public void setBtnOpenFile(JButton btnOpenFile) {
+		this.btnOpenFile = btnOpenFile;
+	}
+
+	/**
+	 * @return the btnPrev
+	 */
+	public JButton getBtnPrev() {
+		return btnPrev;
+	}
+
+	/**
+	 * @param btnPrev the btnPrev to set
+	 */
+	public void setBtnPrev(JButton btnPrev) {
+		this.btnPrev = btnPrev;
+	}
+
+	/**
+	 * @return the btnNext
+	 */
+	public JButton getBtnNext() {
+		return btnNext;
+	}
+
+	/**
+	 * @param btnNext the btnNext to set
+	 */
+	public void setBtnNext(JButton btnNext) {
+		this.btnNext = btnNext;
+	}
+
+	/**
+	 * @return the btnStop
+	 */
+	public JButton getBtnStop() {
+		return btnStop;
+	}
+
+	/**
+	 * @param btnStop the btnStop to set
+	 */
+	public void setBtnStop(JButton btnStop) {
+		this.btnStop = btnStop;
+	}
+
+	/**
+	 * @return the btnOptions
+	 */
+	public JButton getBtnOptions() {
+		return btnOptions;
+	}
+
+	/**
+	 * @param btnOptions the btnOptions to set
+	 */
+	public void setBtnOptions(JButton btnOptions) {
+		this.btnOptions = btnOptions;
+	}
+	
 }
