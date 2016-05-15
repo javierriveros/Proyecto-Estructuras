@@ -1,6 +1,7 @@
 package Ventana;
 
 import static javax.swing.SwingUtilities.updateComponentTreeUI;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -36,6 +38,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 
 public class Editor extends JFrame {
+
 	private JPanel contentPane;
 	private JPanel panelActionButton;
 	private JPanel panelPrincipal;
@@ -53,7 +56,8 @@ public class Editor extends JFrame {
 	private JButton btnCut;
 	private JButton btnPaste;
 	private JButton btnOpenFile;
-	private JButton btnPlay;
+	//Se cambia la visibilidad a public y static para poder cambiar el icono dinamicamente desde la clase Events
+	public static JButton btnPlay;
 	private JButton btnPrev;
 	private JButton btnNext;
 	
@@ -61,7 +65,11 @@ public class Editor extends JFrame {
 	private JButton btnStop;
 	private JButton btnOptions;
 	
+	public static boolean play;
+	
 	public Editor() {
+		play = true;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900, 650);
 		setTitle("AudiTor");
@@ -109,34 +117,14 @@ public class Editor extends JFrame {
 		panelPrincipal.add(panelActionButton);
 		
 		btnCopy = new JButton();
-		btnCopy.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-copy-pressed.png")));
-		btnCopy.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-copy-hover.png")));
-		btnCopy.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-copy.png")));
-		btnCopy.setBorder(null);
-		btnCopy.setBorderPainted(false);
-		btnCopy.setContentAreaFilled(false);
-		btnCopy.setToolTipText("Copiar");
-		btnCopy.addActionListener((e) -> btnCopyActionListener(e));
+		this.modifyButton(btnCopy, "/img/icon-copy.png", "/img/icon-copy-hover.png", "/img/icon-copy-pressed.png", "btnCopy", "Copiar");
 		
 		btnPaste = new JButton();
-		btnPaste.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-paste.png")));
-		btnPaste.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-paste-pressed.png")));
-		btnPaste.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-paste-hover.png")));
-		btnPaste.setBorder(null);
-		btnPaste.setBorderPainted(false);
-		btnPaste.setContentAreaFilled(false);
-		btnPaste.setToolTipText("Pegar");
-		btnPaste.addActionListener((e) -> btnPasteActionListener(e));
+		this.modifyButton(btnPaste, "/img/icon-paste.png", "/img/icon-paste-hover.png", "/img/icon-paste-pressed.png", "btnPaste", "Pegar");
 		
 		btnCut = new JButton();
-		btnCut.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-cut-pressed.png")));
-		btnCut.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-cut-hover.png")));
-		btnCut.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-cut.png")));
-		btnCut.setBorder(null);
-		btnCut.setBorderPainted(false);
-		btnCut.setContentAreaFilled(false);
-		btnCut.setToolTipText("Cortar");
-		btnCut.addActionListener((e) -> btnCutActionListener(e));
+		this.modifyButton(btnCut, "/img/icon-cut.png", "/img/icon-cut-hover.png", "/img/icon-cut-pressed.png", "btnCut", "Cortar");
+		
 		FlowLayout fl_panelActionButton = new FlowLayout(FlowLayout.LEADING, 5, 5);
 		fl_panelActionButton.setAlignOnBaseline(true);
 		panelActionButton.setLayout(fl_panelActionButton);
@@ -145,14 +133,7 @@ public class Editor extends JFrame {
 		panelActionButton.add(btnPaste);
 		
 		btnOpenFile = new JButton("");
-		btnOpenFile.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-open-file-pressed.png")));
-		btnOpenFile.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-open-file-hover.png")));
-		btnOpenFile.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-open-file.png")));
-		btnOpenFile.setBorder(null);
-		btnOpenFile.setBorderPainted(false);
-		btnOpenFile.setContentAreaFilled(false);
-		btnOpenFile.setToolTipText("Abrir archivo");
-		btnOpenFile.addActionListener((e) -> btnOpenFileActionListener(e));
+		this.modifyButton(btnOpenFile, "/img/icon-open-file.png", "/img/icon-open-file-hover.png", "/img/icon-open-file-pressed.png", "btnOpenFile", "Abrir archivo");
 		panelActionButton.add(btnOpenFile);
 		
 		panelCenter = new JPanel();
@@ -168,70 +149,37 @@ public class Editor extends JFrame {
 		panelCenter.add(panelSongButtons, BorderLayout.PAGE_END);
 		
 		btnStop = new JButton("");
-		btnStop.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-stop.png")));
-		btnStop.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-stop-pressed.png")));
-		btnStop.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-stop-hover.png")));
-		btnStop.setBorder(null);
-		btnStop.setBorderPainted(false);
-		btnStop.setContentAreaFilled(false);
-		btnStop.addActionListener((e) -> btnStopActionListener(e));
+		this.modifyButton(btnStop, "/img/icon-stop.png", "/img/icon-stop-hover.png", "/img/icon-stop-pressed.png", "btnStop", "Detener");
 		panelSongButtons.add(btnStop);
 		
 		btnPrev = new JButton();
-		btnPrev.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-prev.png")));
-		btnPrev.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-prev-pressed.png")));
-		btnPrev.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-prev-hover.png")));
+		this.modifyButton(btnPrev, "/img/icon-prev.png", "/img/icon-prev-hover.png", "/img/icon-prev-pressed.png", "btnPrev", "Anterior");
 		panelSongButtons.add(btnPrev);
-		btnPrev.setBorder(null);
-		btnPrev.setBorderPainted(false);
-		btnPrev.setContentAreaFilled(false);
-		btnPrev.addActionListener((e)-> btnPrevActionListener(e));
 		
 		btnPlay = new JButton();
-		btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-play-pressed.png")));
-		btnPlay.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-play-hover.png")));
-		btnPlay.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-play.png")));
-		btnPlay.setBorder(null);
-		btnPlay.setBorderPainted(false);
-		btnPlay.setContentAreaFilled(false);
-		btnPlay.addActionListener((e)-> btnPlayActionListener(e));
+		this.modifyButton(btnPlay, "/img/icon-play.png", "/img/icon-play-hover.png", "/img/icon-play-pressed.png", "btnPlay", "Play");
 		panelSongButtons.add(btnPlay);
 		
 		btnNext = new JButton();
-		btnNext.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-next.png")));
-		btnNext.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-next-pressed.png")));
-		btnNext.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-next-hover.png")));
-		btnNext.setBorder(null);
-		btnNext.setBorderPainted(false);
-		btnNext.setContentAreaFilled(false);
-		btnNext.addActionListener((e) -> btnNextActionListener(e));
+		this.modifyButton(btnNext, "/img/icon-next.png", "/img/icon-next-hover.png", "/img/icon-next-pressed.png", "btnNext", "Siguiente");
 		
 		popup = new JPopupMenu();
-		popup.add(new ActionMenu("Option One"));
-		popup.add(new ActionMenu("Option Two"));
-		popup.add(new ActionMenu("Option Three"));
+		popup.add(new ActionMenu("uno"));
+		popup.add(new ActionMenu("dos"));
+		popup.add(new ActionMenu("tres"));
 		panelSongButtons.add(btnNext);
 		
 		btnOptions = new JButton("");
-		btnOptions.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/icon-options-presed.png")));
-		btnOptions.setIcon(new ImageIcon(Principal.class.getResource("/img/icon-options.png")));
-		btnOptions.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/icon-options-hover.png")));
-		btnOptions.setBorder(null);
-		btnOptions.setBorderPainted(false);
-		btnOptions.setContentAreaFilled(false);
+		this.modifyButton(btnOptions, "/img/icon-options.png", "/img/icon-options-hover.png", "/img/icon-options-pressed.png", "btnOptions", "Opciones");
 		btnOptions.addMouseListener(new MouseListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				showOptions(e);
-			}
+			public void mouseReleased(MouseEvent e) {showOptions(e);}
 			@Override
 			public void mousePressed(MouseEvent e) {}
 			@Override
 			public void mouseExited(MouseEvent e) {}
-			
 			@Override
 			public void mouseEntered(MouseEvent e) {}
-			
 			@Override
 			public void mouseClicked(MouseEvent e) {}
 		});
@@ -262,38 +210,6 @@ public class Editor extends JFrame {
 		mnAyuda.add(mntmAcercaDeAuditor);
 	}
 	
-	private void btnCopyActionListener(ActionEvent e) {
-		System.out.println("Copy");
-	}
-	
-	private void btnCutActionListener(ActionEvent e) {
-		System.out.println("Cut");	
-	}
-	
-	private void btnOpenFileActionListener(ActionEvent e) {
-		System.out.println("Open File");
-	}
-	
-	private void btnPasteActionListener(ActionEvent e) {
-		System.out.println("Paste");
-	}
-	
-	private void btnPrevActionListener(ActionEvent e) {
-		System.out.println("Previous");
-	}
-
-	private void btnPlayActionListener(ActionEvent e) {
-		System.out.println("Play");
-	}
-
-	private void btnNextActionListener(ActionEvent e) {
-		System.out.println("Next");
-	}
-	
-	private void btnStopActionListener(ActionEvent e) {
-		System.out.println("Stop");
-	}
-	
 	public void showOptions(MouseEvent e) {
 		if (e.isPopupTrigger()) {
 			popup.setLocation(e.getLocationOnScreen());
@@ -301,5 +217,25 @@ public class Editor extends JFrame {
 		} else {
 			popup.setVisible(false);
 		}
+	}
+	
+	/** Metodo para evitar escribir tanto codigo con los estilos de los botones ya que a todos se les agrega los iconos y el listener
+	 * */
+	public void modifyButton(JButton btn, String icon, String iconHover, String iconPressed, String actionCommand, String tooltip) {
+		btn.setIcon(new ImageIcon(Principal.class.getResource(icon)));
+		btn.setSelectedIcon(new ImageIcon(Principal.class.getResource(iconPressed)));
+		btn.setRolloverIcon(new ImageIcon(Principal.class.getResource(iconHover)));
+		btn.setBorder(null);
+		btn.setBorderPainted(false);
+		btn.setContentAreaFilled(false);
+		btn.setActionCommand(actionCommand);
+		btn.addActionListener(new Events(this));
+		btn.setToolTipText(tooltip);
+	}
+	
+	public static void changeIcon(String icon) {
+		Editor.btnPlay.setIcon(new ImageIcon(Principal.class.getResource("/img/"+icon+".png")));
+		Editor.btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/"+icon+"-pressed.png")));
+		Editor.btnPlay.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/"+icon+"-hover.png")));
 	}
 }
