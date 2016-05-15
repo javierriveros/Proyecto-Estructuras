@@ -9,8 +9,13 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -24,6 +29,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
@@ -59,6 +66,9 @@ public class Editor extends JFrame {
 		setSize(900, 650);
 		setTitle("AudiTor");
 		setLocationRelativeTo(null);
+		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
+		setIconImage(icon);
+		elMenuBar();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -226,6 +236,30 @@ public class Editor extends JFrame {
 			public void mouseClicked(MouseEvent e) {}
 		});
 		panelSongButtons.add(btnOptions);
+	}
+
+	private void elMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(Color.WHITE);
+		setJMenuBar(menuBar);
+
+		JMenu mnArchivo = new JMenu("Archivo");
+		menuBar.add(mnArchivo);
+
+		JMenuItem mntmCargarArchivo = new JMenuItem("Cargar Archivo...");
+		mnArchivo.add(mntmCargarArchivo);
+
+		JMenuItem mntmGuardarArchivo = new JMenuItem("Guardar Archivo...");
+		mnArchivo.add(mntmGuardarArchivo);
+
+		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mnArchivo.add(mntmSalir);
+
+		JMenu mnAyuda = new JMenu("Ayuda");
+		menuBar.add(mnAyuda);
+
+		JMenuItem mntmAcercaDeAuditor = new JMenuItem("Acerca de AudiTor");
+		mnAyuda.add(mntmAcercaDeAuditor);
 	}
 	
 	private void btnCopyActionListener(ActionEvent e) {

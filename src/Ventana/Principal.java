@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import static javax.swing.SwingUtilities.updateComponentTreeUI;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -16,6 +19,9 @@ import java.awt.Toolkit;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -41,10 +47,18 @@ public class Principal {
 		frmAuditorAlpha.setTitle("AudiTor");
 		frmAuditorAlpha.setBounds(100, 100, 708, 417);
 		frmAuditorAlpha.setLocationRelativeTo(null);
-
+		
 		frmAuditorAlpha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Image icon = Toolkit.getDefaultToolkit().getImage("/src/img/icon-AudiTor.png");
+		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
 		frmAuditorAlpha.setIconImage(icon);
+		
+		try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            SwingUtilities.updateComponentTreeUI(frmAuditorAlpha);
+            updateComponentTreeUI(frmAuditorAlpha);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 		elMenuBar();
 		decoracionVentana();
@@ -93,7 +107,8 @@ public class Principal {
 					if (ruta.contains(".mp3") || ruta.contains(".wav") || ruta.contains(".aiff")) {
 
 						JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
-
+						Editor editorVentana = new Editor();
+						editorVentana.setVisible(true);
 						frmAuditorAlpha.dispose();
 					} else {
 						JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",

@@ -2,6 +2,7 @@ package Inicio;
 
 import java.awt.EventQueue;
 
+import Ventana.Editor;
 import Ventana.Splash;
 
 public class Main {
@@ -13,6 +14,7 @@ public class Main {
 			public void run() {
 				try {
 					Splash window = new Splash();
+					//Editor window = new Editor();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
