@@ -111,8 +111,7 @@ public class Principal {
 
 						JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
 						
-						//Editor editorVentana = new Editor();
-						//editorVentana.setVisible(true);
+						new Editor().setVisible(true);
 						
 						frmAuditorAlpha.dispose();
 					} else {
