@@ -16,11 +16,12 @@ public class Grafica extends JPanel {
 
 	public Grafica(Lista valoresAmplitud) {
 		this.valoresAmplitud = valoresAmplitud;
+		
 	}
 
-	/*
 	public void paint(Graphics g) {
 		super.paint(g);
+		System.out.println("entre aqui");
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		//System.out.println("entra");
@@ -32,26 +33,31 @@ public class Grafica extends JPanel {
 		if (valoresAmplitud != null) {
 			//System.out.println("entra!!!");
 			g2d.setColor(Color.RED);
+			int razonDeCambio = valoresAmplitud.getTamano() / this.getWidth();
 			int posicionEnGrafica = 0;
 			int oldY = this.getHeight() / 2;
 			int oldX = 0;
 			for (int i = 1; i < valoresAmplitud.getTamano(); i++) {
-				int razon = valoresAmplitud.getTamano() / this.getWidth();
-				if (i % razon == 0) {
+				if(i % 1 == 0){
 					float posicionY = valoresAmplitud.getAmplitudAt(i) + 1;
+					//System.out.println(valoresAmplitud.getAmplitudAt(i));
 					//System.out.println(posicionY);
 					posicionY = (posicionY * this.getHeight()) / 2;
 					int posY = (int) posicionY;
-					g2d.drawLine(oldX, oldY, posicionEnGrafica, posY);
+					//g2d.drawLine(oldX, oldY, posicionEnGrafica, posY);
+					
+					g2d.drawRect(posicionEnGrafica, posY, 0, 0);
+										
 					//System.out.println("Pare de lineas: " + oldX + " " + oldY + "\nPar de lineas:" + posicionEnGrafica + " " + posY);
 					oldX = posicionEnGrafica;
 					oldY = posY;
-					posicionEnGrafica++;
+					if(i % razonDeCambio == 0) {
+						posicionEnGrafica++;
+					}
 				}
 			}
 		}
 	}
-	*/
 	
 
 }

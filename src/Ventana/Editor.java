@@ -75,6 +75,8 @@ public class Editor extends JFrame {
 	public static boolean play;
 	
 	public Editor(Cancion cancion) {
+		
+
 		this.cancion = cancion;
 		play = true;
 		
@@ -251,6 +253,10 @@ public class Editor extends JFrame {
 	 */
 	public JPanel getPanelActionButton() {
 		return panelActionButton;
+	}
+	
+	public Cancion getCancion(){
+		return cancion;
 	}
 
 	/**

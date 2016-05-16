@@ -15,7 +15,7 @@ public class Cargar extends Thread {
     public void run() {
         for (int i = 1; i <= 100; i++) {
             this.progress.setValue(i);
-            pause((int)(Math.random() * 45));
+            pause((int)(Math.random() * 1));
         }
     }
 
