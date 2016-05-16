@@ -225,9 +225,9 @@ public class Editor extends JFrame {
 	/** Metodo para evitar escribir tanto codigo con los estilos de los botones ya que a todos se les agrega los iconos y el listener
 	 * */
 	public void modifyButton(JButton btn, String icon, String iconHover, String iconPressed, String actionCommand, String tooltip) {
-		btn.setIcon(new ImageIcon(Principal.class.getResource(icon)));
-		btn.setSelectedIcon(new ImageIcon(Principal.class.getResource(iconPressed)));
-		btn.setRolloverIcon(new ImageIcon(Principal.class.getResource(iconHover)));
+		btn.setIcon(new ImageIcon("src/img/"+icon));
+		btn.setSelectedIcon(new ImageIcon("src/img/"+iconPressed));
+		btn.setRolloverIcon(new ImageIcon("src/img/"+iconHover));
 		btn.setBorder(null);
 		btn.setBorderPainted(false);
 		btn.setContentAreaFilled(false);
