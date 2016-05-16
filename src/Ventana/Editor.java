@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 
+import jm.util.Read;
 import listas.Lista;
+import logica.Cancion;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -68,9 +70,12 @@ public class Editor extends JFrame {
 	private JButton btnStop;
 	private JButton btnOptions;
 	
+	private Cancion cancion;
+	
 	public static boolean play;
 	
-	public Editor() {
+	public Editor(Cancion cancion) {
+		this.cancion = cancion;
 		play = true;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -142,8 +147,7 @@ public class Editor extends JFrame {
 		panelCenter = new JPanel();
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new BorderLayout(0, 0));
-		
-		panelGrafica = new Grafica();
+		panelGrafica = new Grafica(cancion.getAmplitudes());
 		panelCenter.add(panelGrafica, BorderLayout.CENTER);
 		
 		panelSongButtons = new JPanel();

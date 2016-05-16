@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
 import javax.swing.event.ChangeListener;
+
+import jm.util.Read;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.SwingUtilities;
 import static javax.swing.SwingUtilities.updateComponentTreeUI;
@@ -22,6 +25,7 @@ public class Splash extends JFrame {
 	private JLabel lblCargandoComponentes;
 
 	public Splash() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(568, 600);
 		contentPane = new JPanel();
@@ -68,7 +72,7 @@ public class Splash extends JFrame {
 				}
 			}
 		});
-
+		
 		hilo = new Cargar(this.progressBar);
 		hilo.start();
 		hilo = null;
