@@ -3,6 +3,9 @@ package Ventana;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -31,6 +34,8 @@ public class Splash extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
+		setIconImage(icon);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 

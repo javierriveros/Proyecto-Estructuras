@@ -24,7 +24,6 @@ public class Cancion {
 		channelsNumber = archivo.getChannels();
 		sampleRate = archivo.getSampleRate();
 		depth = archivo.getBitResolution();
-		
 		amplitudes = new Lista(archivo.getSampleData());
 		guardarTemporal();
 	}

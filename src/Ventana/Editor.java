@@ -84,8 +84,7 @@ public class Editor extends JFrame {
 		setSize(900, 650);
 		setTitle("AudiTor");
 		setLocationRelativeTo(null);
-		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
-		setIconImage(icon);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		elMenuBar();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));

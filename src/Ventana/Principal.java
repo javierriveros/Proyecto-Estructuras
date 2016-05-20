@@ -114,8 +114,13 @@ public class Principal {
 
 						Cancion cancion = new Cancion(ruta);
 						JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
+<<<<<<< HEAD
 						Editor editorVentana = new Editor(cancion);
 						editorVentana.setVisible(true);
+=======
+						
+						new Editor().setVisible(true);
+>>>>>>> 76aa6df4003763fda21c328a19803955ef05290f
 						
 						frmAuditorAlpha.dispose();
 					} else {
