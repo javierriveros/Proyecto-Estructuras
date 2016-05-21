@@ -42,9 +42,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 
-public class Editor extends JFrame {
+public class Editor extends JPanel {
 
-	private JPanel contentPane;
+	//private JPanel contentPane;
 	private JPanel panelActionButton;
 	private JPanel panelPrincipal;
 	private JPanel panelCenter;
@@ -80,16 +80,16 @@ public class Editor extends JFrame {
 		this.cancion = cancion;
 		play = true;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(900, 650);
-		setTitle("AudiTor");
-		setLocationRelativeTo(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		elMenuBar();
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	//	setSize(900, 650);
+		//setTitle("AudiTor");
+	//	setLocationRelativeTo(null);
+//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//elMenuBar();
+		//contentPane = new JPanel();
+		setBorder(new EmptyBorder(0, 0, 0, 0));
+		setLayout(new BorderLayout(0, 0));
+		//add(contentPane);
 		
 		try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -106,7 +106,7 @@ public class Editor extends JFrame {
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(Color.WHITE);
 		panelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 10));
-		contentPane.add(panelPrincipal, BorderLayout.NORTH);
+		add(panelPrincipal, BorderLayout.NORTH);
 		panelPrincipal.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		lblSoundTitle = new JLabel("Titulo del audio".toUpperCase());
@@ -146,7 +146,7 @@ public class Editor extends JFrame {
 		panelActionButton.add(btnOpenFile);
 		
 		panelCenter = new JPanel();
-		contentPane.add(panelCenter, BorderLayout.CENTER);
+		add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setLayout(new BorderLayout(0, 0));
 		panelGrafica = new Grafica(cancion.getAmplitudes());
 		panelCenter.add(panelGrafica, BorderLayout.CENTER);
@@ -194,30 +194,6 @@ public class Editor extends JFrame {
 		panelSongButtons.add(btnOptions);
 	}
 
-	private void elMenuBar() {
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(Color.WHITE);
-		setJMenuBar(menuBar);
-
-		JMenu mnArchivo = new JMenu("Archivo");
-		menuBar.add(mnArchivo);
-
-		JMenuItem mntmCargarArchivo = new JMenuItem("Cargar Archivo...");
-		mnArchivo.add(mntmCargarArchivo);
-
-		JMenuItem mntmGuardarArchivo = new JMenuItem("Guardar Archivo...");
-		mnArchivo.add(mntmGuardarArchivo);
-
-		JMenuItem mntmSalir = new JMenuItem("Salir");
-		mnArchivo.add(mntmSalir);
-
-		JMenu mnAyuda = new JMenu("Ayuda");
-		menuBar.add(mnAyuda);
-
-		JMenuItem mntmAcercaDeAuditor = new JMenuItem("Acerca de AudiTor");
-		mnAyuda.add(mntmAcercaDeAuditor);
-	}
-	
 	public void showOptions(MouseEvent e) {
 		if (e.isPopupTrigger()) {
 			popup.setLocation(e.getLocationOnScreen());

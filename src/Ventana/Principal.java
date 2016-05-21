@@ -29,15 +29,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowEvent;
 
-public class Principal {
+public class Principal extends JFrame {
 
-	JFrame frmAuditorAlpha;
+	//JFrame frmAuditorAlpha;
 
 	/**
 	 * Create the application.
 	 */
 	public Principal() {
+		
 		initialize();
 	}
 
@@ -45,22 +48,22 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmAuditorAlpha = new JFrame();
-		frmAuditorAlpha.getContentPane().setBackground(Color.WHITE);
-		frmAuditorAlpha.setTitle("AudiTor");
-		frmAuditorAlpha.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frmAuditorAlpha = new JFrame();
+		getContentPane().setBackground(Color.WHITE);
+		setTitle("AudiTor");
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		//frmAuditorAlpha.setBounds(100, 100, 708, 417);
-		//frmAuditorAlpha.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		
 		
-		frmAuditorAlpha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
-		frmAuditorAlpha.setIconImage(icon);
+		setIconImage(icon);
 		
 		try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            SwingUtilities.updateComponentTreeUI(frmAuditorAlpha);
-            updateComponentTreeUI(frmAuditorAlpha);
+            SwingUtilities.updateComponentTreeUI(this);
+            updateComponentTreeUI(this);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -72,7 +75,7 @@ public class Principal {
 	private void elMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
-		frmAuditorAlpha.setJMenuBar(menuBar);
+		setJMenuBar(menuBar);
 
 		JMenu mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
@@ -94,12 +97,12 @@ public class Principal {
 	}
 
 	private void decoracionVentana() {
-		frmAuditorAlpha.getContentPane().setLayout(new BorderLayout(0, 0));
-		this.frmAuditorAlpha.getContentPane().setBackground(Color.WHITE);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		this.getContentPane().setBackground(Color.WHITE);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		frmAuditorAlpha.getContentPane().add(panel, BorderLayout.CENTER);
+		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(1, 1, 0, 0));
 
 		JButton btnAgregar = new JButton();
@@ -114,15 +117,10 @@ public class Principal {
 
 						Cancion cancion = new Cancion(ruta);
 						JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
-<<<<<<< HEAD
 						Editor editorVentana = new Editor(cancion);
-						editorVentana.setVisible(true);
-=======
-						
-						new Editor().setVisible(true);
->>>>>>> 76aa6df4003763fda21c328a19803955ef05290f
-						
-						frmAuditorAlpha.dispose();
+						setContentPane(editorVentana);
+						revalidate();
+						repaint();
 					} else {
 						JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",
 								JOptionPane.ERROR_MESSAGE);
@@ -132,15 +130,9 @@ public class Principal {
 					JOptionPane.showMessageDialog(null, "No has seleccionado ningún archivo.", "Aviso",
 							JOptionPane.WARNING_MESSAGE);
 				}
-
 			}
 		});
-
-		
 		panel.add(btnAgregar);
-
-		// Image iconButton =
-		// Toolkit.getDefaultToolkit().getImage("src/icon.png");
 		btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
 		btnAgregar.setBorder(null);
 		btnAgregar.setBorderPainted(false);
