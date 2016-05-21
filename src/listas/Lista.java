@@ -4,17 +4,21 @@ public class Lista {
 
 	private Nodo raiz;
 	private int numElementos;
+	private float amplitudMaxima;
 
 	public Lista() {
 		this.raiz = null;
 		this.numElementos = 0;
-		this.raiz.setEnlaceSiguiente(raiz);
+		amplitudMaxima = 0;
 	}
 
 	public Lista(float[] valores) {
-		this.numElementos = valores.length;
-		this.raiz = null;
-		this.raiz.setEnlaceSiguiente(raiz);
+		numElementos = 0;
+		raiz = null;
+		amplitudMaxima = 0;
+		for(int i = 0; i < valores.length; i++) {
+			this.insertarUltimo(valores[i]);
+		}
 	}
 
 	public boolean isEmpty() {
@@ -27,16 +31,7 @@ public class Lista {
 			this.raiz.setEnlaceSiguiente(raiz);
 			this.raiz.setEnlaceAnterior(raiz);
 		} else {
-			// Nodo recorrido = raiz;
 			Nodo nuevo = new Nodo(amplitud);
-			/*
-			 * while(recorrido.getEnlaceSiguiente() != raiz){ recorrido =
-			 * recorrido.getEnlaceSiguiente(); }
-			 */
-			/*
-			 * recorrido.setEnlaceSiguiente(nuevo);
-			 * nuevo.setEnlaceSiguiente(raiz); raiz = nuevo;
-			 */
 			nuevo.setEnlaceAnterior(this.raiz.getEnlaceAnteriror());
 			this.raiz.getEnlaceAnteriror().setEnlaceSiguiente(nuevo);
 			this.raiz.setEnlaceAnterior(nuevo);
@@ -52,17 +47,14 @@ public class Lista {
 			this.raiz.setEnlaceSiguiente(raiz);
 			this.raiz.setEnlaceAnterior(raiz);
 		} else {
-		//	Nodo recorrido = raiz;
 			Nodo nuevo = new Nodo(amplitud);
-		/*	while (recorrido.getEnlaceSiguiente() != raiz) {
-				recorrido = recorrido.getEnlaceSiguiente();
-			} 
-			recorrido.setEnlaceSiguiente(nuevo);
-			nuevo.setEnlaceSiguiente(raiz); */
 			nuevo.setEnlaceAnterior(this.raiz.getEnlaceAnteriror());
 			nuevo.setEnlaceSiguiente(this.raiz);
 			this.raiz.getEnlaceAnteriror().setEnlaceSiguiente(nuevo);
 			this.raiz.setEnlaceAnterior(nuevo);
+		}
+		if(amplitud > amplitudMaxima) {
+			amplitudMaxima = amplitud;
 		}
 		numElementos++;
 	}
@@ -79,8 +71,6 @@ public class Lista {
 				for (int i = 2; i < posicion; i++) {
 					recorrido = recorrido.getEnlaceSiguiente();
 				}
-			/*	nuevo.setEnlaceSiguiente(recorrido.getEnlaceSiguiente());
-				recorrido.setEnlaceSiguiente(nuevo);  */
 				nuevo.setEnlaceSiguiente(recorrido.getEnlaceSiguiente());
 				recorrido.getEnlaceSiguiente().setEnlaceAnterior(nuevo);
 				recorrido.setEnlaceSiguiente(nuevo);
@@ -99,7 +89,6 @@ public class Lista {
 			float amplitud = this.raiz.getAmplitud();
 			this.raiz = this.raiz.getEnlaceSiguiente();
 			recorrido.setEnlaceSiguiente(this.raiz);
-	    //  recorrido.setEnlaceSiguiente(raiz.getEnlaceSiguiente());
 			this.numElementos--;
 			return amplitud;
 		} else if (numElementos == 1) {
@@ -120,7 +109,6 @@ public class Lista {
 				recorrido = recorrido.getEnlaceSiguiente();
 			}
 			float amplitud = recorrido.getEnlaceSiguiente().getAmplitud();
-		//  recorrido.setEnlaceSiguiente(recorrido.getEnlaceSiguiente().getEnlaceSiguiente());
 			recorrido.setEnlaceSiguiente(this.raiz);
 			this.numElementos--;
 			return amplitud;
@@ -161,7 +149,7 @@ public class Lista {
 		if (!isEmpty() && posicion >= 1 && posicion <= numElementos) {
 			Nodo recorrido = raiz;
 			for (int i = 1; i < posicion; i++) {
-				recorrido.getEnlaceSiguiente();
+				recorrido = recorrido.getEnlaceSiguiente();
 			}
 			return recorrido.getAmplitud();
 		} else {
@@ -170,8 +158,32 @@ public class Lista {
 		}
 	}
 	
+	public void pasteFromCopy(Nodo inicial, Nodo terminal,  int posicion) {
+		
+	}
+	
 	public int getTamano(){
 		return numElementos;
+	}
+	
+	public float getAmplitudMaxima() {
+		return amplitudMaxima;
+	}
+	
+	public float[] toFloatArray(){
+		float[] data = new float[numElementos];
+		Nodo recorrido = raiz;
+		for(int i = 0; i < data.length; i++) {
+			data[i] = recorrido.getAmplitud();
+			recorrido = recorrido.getEnlaceSiguiente();
+		}
+		return data;
+	}
+	
+	public void mostrar() {
+		for(int i = 1; i <= numElementos; i++) {
+			System.out.println(getAmplitudAt(i));
+		}
 	}
 
 	@Override

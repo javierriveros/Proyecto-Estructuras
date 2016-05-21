@@ -3,12 +3,18 @@ package Ventana;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
 import javax.swing.event.ChangeListener;
+
+import jm.util.Read;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.SwingUtilities;
 import static javax.swing.SwingUtilities.updateComponentTreeUI;
@@ -22,11 +28,14 @@ public class Splash extends JFrame {
 	private JLabel lblCargandoComponentes;
 
 	public Splash() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(568, 600);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
+		setIconImage(icon);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 
@@ -68,7 +77,7 @@ public class Splash extends JFrame {
 				}
 			}
 		});
-
+		
 		hilo = new Cargar(this.progressBar);
 		hilo.start();
 		hilo = null;

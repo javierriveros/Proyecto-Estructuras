@@ -7,9 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Events implements ActionListener {
-	private JFrame frame;
+	private Editor frame;
 	
-	public Events(JFrame frame) {
+	public Events(Editor frame) {
 		this.frame = frame;
 	}
 
@@ -38,9 +38,11 @@ public class Events implements ActionListener {
 				if (Editor.play == true) {
 					Editor.changeIcon("icon-pause");
 					Editor.play = false;
+					frame.getCancion().play();
 				} else {
 					Editor.play = true;
 					Editor.changeIcon("icon-play");
+					frame.getCancion().pause();
 				}
 				break;
 			case "btnNext":

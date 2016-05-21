@@ -22,6 +22,9 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import jm.util.Read;
+import logica.Cancion;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -109,9 +112,15 @@ public class Principal {
 					String ruta = cargaArchivo.getSelectedFile().getAbsolutePath();
 					if (ruta.contains(".mp3") || ruta.contains(".wav") || ruta.contains(".aiff")) {
 
+						Cancion cancion = new Cancion(ruta);
 						JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
+<<<<<<< HEAD
+						Editor editorVentana = new Editor(cancion);
+						editorVentana.setVisible(true);
+=======
 						
 						new Editor().setVisible(true);
+>>>>>>> 76aa6df4003763fda21c328a19803955ef05290f
 						
 						frmAuditorAlpha.dispose();
 					} else {
@@ -119,13 +128,14 @@ public class Principal {
 								JOptionPane.ERROR_MESSAGE);
 					}
 				} catch (Exception ex) {
-					System.out.println(ex);
+					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, "No has seleccionado ningún archivo.", "Aviso",
 							JOptionPane.WARNING_MESSAGE);
 				}
 
 			}
 		});
+
 		
 		panel.add(btnAgregar);
 
