@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.regex.Pattern;
+
 import javax.sound.sampled.spi.AudioFileReader;
 
 import com.sun.media.sound.AudioFloatConverter;
@@ -25,7 +27,8 @@ public class Cancion {
 		sampleRate = archivo.getSampleRate();
 		depth = archivo.getBitResolution();
 		amplitudes = new Lista(archivo.getSampleData());
-		nombreDelAudio = ruta;
+		String name[] = ruta.split(Pattern.quote("\\"));
+		nombreDelAudio = name[name.length-1];
 		duracion = amplitudes.getTamano() / sampleRate;
 		guardarTemporal();
 	}

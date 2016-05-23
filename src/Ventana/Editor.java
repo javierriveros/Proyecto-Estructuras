@@ -109,7 +109,7 @@ public class Editor extends JPanel {
 		add(panelPrincipal, BorderLayout.NORTH);
 		panelPrincipal.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		lblSoundTitle = new JLabel("Ruta: "+cancion.getNombreDelAudio());
+		lblSoundTitle = new JLabel("Nombre del archivo: "+cancion.getNombreDelAudio());
 		lblSoundTitle.setFont(robotoDraftMedium);
 		lblSoundTitle.setBackground(new Color(238,238,238));
 		panelPrincipal.add(lblSoundTitle);
