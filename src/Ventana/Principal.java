@@ -109,11 +109,7 @@ public class Principal extends JFrame {
 
 		JButton btnAgregar = new JButton();
 		
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evento) {
-				cargarArchivo();
-			}
-		});
+		btnAgregar.addActionListener(l -> cargarArchivo());
 		panel.add(btnAgregar);
 		btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
 		btnAgregar.setBorder(null);
