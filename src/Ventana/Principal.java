@@ -80,13 +80,15 @@ public class Principal extends JFrame {
 		JMenu mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
 
-		JMenuItem mntmCargarArchivo = new JMenuItem("Cargar Archivo...");
+		JMenuItem mntmCargarArchivo = new JMenuItem("Cargar Archivo");
+		mntmCargarArchivo.addActionListener((e) -> cargarArchivo());
 		mnArchivo.add(mntmCargarArchivo);
 
-		JMenuItem mntmGuardarArchivo = new JMenuItem("Guardar Archivo...");
+		JMenuItem mntmGuardarArchivo = new JMenuItem("Guardar Archivo");
 		mnArchivo.add(mntmGuardarArchivo);
 
 		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener((l) -> System.exit(0));
 		mnArchivo.add(mntmSalir);
 
 		JMenu mnAyuda = new JMenu("Ayuda");
@@ -109,27 +111,7 @@ public class Principal extends JFrame {
 		
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-				try {
-					JFileChooser cargaArchivo = new JFileChooser();
-					cargaArchivo.showOpenDialog(null);
-					String ruta = cargaArchivo.getSelectedFile().getAbsolutePath();
-					if (ruta.contains(".mp3") || ruta.contains(".wav") || ruta.contains(".aiff")) {
-
-						Cancion cancion = new Cancion(ruta);
-						JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
-						Editor editorVentana = new Editor(cancion);
-						setContentPane(editorVentana);
-						revalidate();
-						repaint();
-					} else {
-						JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",
-								JOptionPane.ERROR_MESSAGE);
-					}
-				} catch (Exception ex) {
-					ex.printStackTrace();
-					JOptionPane.showMessageDialog(null, "No has seleccionado ningún archivo.", "Aviso",
-							JOptionPane.WARNING_MESSAGE);
-				}
+				cargarArchivo();
 			}
 		});
 		panel.add(btnAgregar);
@@ -140,5 +122,28 @@ public class Principal extends JFrame {
 		btnAgregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-pressed.png"))); // NOI18N
 		btnAgregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-hover.png")));
 	}
+	
+	private void cargarArchivo() {
+		try {
+			JFileChooser cargaArchivo = new JFileChooser();
+			cargaArchivo.showOpenDialog(null);
+			String ruta = cargaArchivo.getSelectedFile().getAbsolutePath();
+			if (ruta.contains(".mp3") || ruta.contains(".wav") || ruta.contains(".aiff")) {
 
+				Cancion cancion = new Cancion(ruta);
+				JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
+				Editor editorVentana = new Editor(cancion);
+				setContentPane(editorVentana);
+				revalidate();
+				repaint();
+			} else {
+				JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			JOptionPane.showMessageDialog(null, "No has seleccionado ningún archivo.", "Aviso",
+					JOptionPane.WARNING_MESSAGE);
+		}
+	}
 }
