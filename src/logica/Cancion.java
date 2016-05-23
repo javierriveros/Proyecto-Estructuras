@@ -25,6 +25,8 @@ public class Cancion {
 		sampleRate = archivo.getSampleRate();
 		depth = archivo.getBitResolution();
 		amplitudes = new Lista(archivo.getSampleData());
+		nombreDelAudio = ruta;
+		duracion = amplitudes.getTamano() / sampleRate;
 		guardarTemporal();
 	}
 	
@@ -36,19 +38,11 @@ public class Cancion {
 		AudioFileOut salida = new AudioFileOut(amplitudes.toFloatArray(), "D:/elo.wav", 1, sampleRate, depth);
 	}
 	
-	public void play() {
-		Play.audioFile("D:/elo.wav");
+	public String getNombreDelAudio() {
+		return nombreDelAudio;
 	}
 	
-	public void pause() {
-		Play.pauseAudio();
-	}
-	
-	public void unPausa() {
-		Play.unPauseAudio();
-	}
-	
-	public void stop() {
-		Play.stopAudio();
+	public float getDuracion() {
+		return duracion;
 	}
 }

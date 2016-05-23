@@ -109,12 +109,12 @@ public class Editor extends JPanel {
 		add(panelPrincipal, BorderLayout.NORTH);
 		panelPrincipal.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		lblSoundTitle = new JLabel("Titulo del audio".toUpperCase());
+		lblSoundTitle = new JLabel("Ruta: "+cancion.getNombreDelAudio());
 		lblSoundTitle.setFont(robotoDraftMedium);
 		lblSoundTitle.setBackground(new Color(238,238,238));
 		panelPrincipal.add(lblSoundTitle);
 		
-		lblSoundSize = new JLabel("Tamaño: 2kb");
+		lblSoundSize = new JLabel("Duración: " + cancion.getDuracion() + " seg.");
 		lblSoundSize.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSoundSize.setFont(robotoDraftNormal);
 		lblSoundSize.setBackground(new Color(238,238,238));

@@ -181,8 +181,10 @@ public class Lista {
 	}
 	
 	public void mostrar() {
-		for(int i = 1; i <= numElementos; i++) {
-			System.out.println(getAmplitudAt(i));
+		Nodo recorrido = raiz;
+		while(recorrido.getEnlaceSiguiente() != raiz) {
+			System.out.println(recorrido.getAmplitud());
+			recorrido = recorrido.getEnlaceSiguiente();
 		}
 	}
 

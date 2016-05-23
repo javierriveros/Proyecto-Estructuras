@@ -38,11 +38,9 @@ public class Events implements ActionListener {
 				if (Editor.play == true) {
 					Editor.changeIcon("icon-pause");
 					Editor.play = false;
-					frame.getCancion().play();
 				} else {
 					Editor.play = true;
 					Editor.changeIcon("icon-play");
-					frame.getCancion().pause();
 				}
 				break;
 			case "btnNext":
