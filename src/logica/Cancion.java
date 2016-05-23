@@ -35,7 +35,11 @@ public class Cancion {
 	}
 	
 	private void guardarTemporal(){
-		AudioFileOut salida = new AudioFileOut(amplitudes.toFloatArray(), "D:/elo.wav", 1, sampleRate, depth);
+		AudioFileOut salida = new AudioFileOut(amplitudes.toFloatArray(), "elo.wav", 1, sampleRate, depth);
+	}
+	
+	public void guardadoTemporal() {
+		guardarTemporal();
 	}
 	
 	public String getNombreDelAudio() {
