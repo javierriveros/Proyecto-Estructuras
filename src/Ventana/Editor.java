@@ -79,6 +79,7 @@ public class Editor extends JPanel {
 
 		this.cancion = cancion;
 		play = true;
+		cancion.play();
 		
 	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	//	setSize(900, 650);
