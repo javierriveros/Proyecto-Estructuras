@@ -22,7 +22,8 @@ public class Cancion {
 	private float duracion;
 	private Lista amplitudes;
 	private Hilo hilo;
-	
+	private boolean entro;
+
 	public Cancion(String ruta) {
 		AudioFileIn archivo = new AudioFileIn(ruta);
 		channelsNumber = archivo.getChannels();
@@ -30,40 +31,47 @@ public class Cancion {
 		depth = archivo.getBitResolution();
 		amplitudes = new Lista(archivo.getSampleData());
 		String name[] = ruta.split(Pattern.quote("\\"));
-		nombreDelAudio = name[name.length-1];
+		nombreDelAudio = name[name.length - 1];
 		duracion = amplitudes.getTamano() / sampleRate;
 		hilo = new Hilo();
+
 		guardarTemporal();
 	}
-	
+
 	public Lista getAmplitudes() {
 		return amplitudes;
 	}
-	
-	private void guardarTemporal(){
+
+	private void guardarTemporal() {
 		AudioFileOut salida = new AudioFileOut(amplitudes.toFloatArray(), "elo.wav", 1, sampleRate, depth);
 	}
-	
+
 	public void guardadoTemporal() {
 		guardarTemporal();
 	}
-	
+
 	public String getNombreDelAudio() {
 		return nombreDelAudio;
 	}
-	
+
 	public float getDuracion() {
 		return duracion;
 	}
-	
+
 	public void play() {
-		hilo.start();
+		hilo.run();
 	}
-	
-	private class Hilo extends Thread{
-		
-		
-		
+
+	public void pause() {
+		Play.pauseAudio();
+	}
+
+	public void stop() {
+		Play.stopAudio();
+	}
+
+	private class Hilo extends Thread {
+
 		@Override
 		public void run() {
 			Play.audioFile("elo.wav");

@@ -30,16 +30,19 @@ public class Events implements ActionListener {
 				break;
 			case "btnStop":
 				System.out.println("STOP");
+				Editor.cancion.stop();
 				break;
 			case "btnPrev":
 				System.out.println("PREVIOUS");
 				break;
 			case "btnPlay":
 				if (Editor.play == true) {
+					Editor.cancion.play();
 					Editor.changeIcon("icon-pause");
 					Editor.play = false;
 				} else {
 					Editor.play = true;
+					Editor.cancion.pause();
 					Editor.changeIcon("icon-play");
 				}
 				break;

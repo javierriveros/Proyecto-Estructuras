@@ -34,13 +34,13 @@ import java.awt.event.WindowEvent;
 
 public class Principal extends JFrame {
 
-	//JFrame frmAuditorAlpha;
+	// JFrame frmAuditorAlpha;
 
 	/**
 	 * Create the application.
 	 */
 	public Principal() {
-		
+
 		initialize();
 	}
 
@@ -48,25 +48,24 @@ public class Principal extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		//frmAuditorAlpha = new JFrame();
+		// frmAuditorAlpha = new JFrame();
 		getContentPane().setBackground(Color.WHITE);
 		setTitle("AudiTor");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//frmAuditorAlpha.setBounds(100, 100, 708, 417);
+		// frmAuditorAlpha.setBounds(100, 100, 708, 417);
 		setLocationRelativeTo(null);
-		
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
 		setIconImage(icon);
-		
+
 		try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            SwingUtilities.updateComponentTreeUI(this);
-            updateComponentTreeUI(this);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(this);
+			updateComponentTreeUI(this);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 
 		elMenuBar();
 		decoracionVentana();
@@ -108,7 +107,7 @@ public class Principal extends JFrame {
 		panel.setLayout(new GridLayout(1, 1, 0, 0));
 
 		JButton btnAgregar = new JButton();
-		
+
 		btnAgregar.addActionListener(l -> cargarArchivo());
 		panel.add(btnAgregar);
 		btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
@@ -118,7 +117,7 @@ public class Principal extends JFrame {
 		btnAgregar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-pressed.png"))); // NOI18N
 		btnAgregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-hover.png")));
 	}
-	
+
 	private void cargarArchivo() {
 		try {
 			JFileChooser cargaArchivo = new JFileChooser();
@@ -132,8 +131,8 @@ public class Principal extends JFrame {
 					setContentPane(editorVentana);
 					getContentPane().revalidate();
 					getContentPane().repaint();
-					editorVentana.validate();
-					this.setVisible(true);
+
+			//		this.setVisible(true);
 				}).start();
 			} else {
 				JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",
