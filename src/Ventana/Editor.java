@@ -130,7 +130,7 @@ public class Editor extends JPanel {
 		lblSoundTitle.setBackground(new Color(238, 238, 238));
 		panelTexto.add(lblSoundTitle);
 
-		lblSoundSize = new JLabel("DuraciÃ³n: " + cancion.getDuracion() + " seg.");
+		lblSoundSize = new JLabel("Duración: " + cancion.getDuracion() + " seg.");
 		lblSoundSize.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSoundSize.setFont(robotoDraftNormal);
 		lblSoundSize.setBackground(new Color(238, 238, 238));

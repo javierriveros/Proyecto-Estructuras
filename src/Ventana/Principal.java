@@ -54,6 +54,7 @@ public class Principal extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		// frmAuditorAlpha.setBounds(100, 100, 708, 417);
 		setLocationRelativeTo(null);
+		setSize(700,600);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Image icon = Toolkit.getDefaultToolkit().getImage("src/img/icon-AudiTor.png");
@@ -123,7 +124,7 @@ public class Principal extends JFrame {
 			JFileChooser cargaArchivo = new JFileChooser();
 			cargaArchivo.showOpenDialog(null);
 			String ruta = cargaArchivo.getSelectedFile().getAbsolutePath();
-			if (ruta.contains(".mp3") || ruta.contains(".wav") || ruta.contains(".aiff")) {
+			if (ruta.contains(".wav")) {
 				new Thread(() -> {
 					Cancion cancion = new Cancion(ruta);
 					JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
@@ -139,7 +140,7 @@ public class Principal extends JFrame {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			System.out.println(ex.getMessage());
 			JOptionPane.showMessageDialog(null, "No has seleccionado ningún archivo.", "Aviso",
 					JOptionPane.WARNING_MESSAGE);
 		}

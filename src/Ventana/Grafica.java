@@ -24,7 +24,7 @@ public class Grafica extends JPanel {
 		System.out.println("entra");
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setColor(new Color(207, 216, 220));
+		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 
 //		g2d.setColor(Color.BLACK);
@@ -37,7 +37,7 @@ public class Grafica extends JPanel {
 	}
 
 	private void dibujarLineas(Graphics2D g2d) {
-		g2d.setColor(Color.RED);
+		g2d.setColor(new Color(58, 217, 150));
 		float[] fragmentos = valoresAmplitud.toFloatArray();
 		int razonDeCambio = (valoresAmplitud.getTamano() / this.getWidth()) / 2;
 		int posicion = 0;
