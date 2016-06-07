@@ -7,6 +7,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerListModel;
 import javax.swing.border.EmptyBorder;
 
 import jm.util.Read;
@@ -50,6 +52,7 @@ public class Editor extends JPanel {
 	private JPanel panelCenter;
 	private Grafica panelGrafica;
 	private JPanel panelSongButtons;
+	private JPanel panelEdicion;
 	
 	private Font robotoDraftNormal;
 	private Font robotoDraftMedium;
@@ -73,6 +76,14 @@ public class Editor extends JPanel {
 	private Cancion cancion;
 	
 	public static boolean play;
+	private JPanel panelFrom;
+	private JPanel panelTo;
+	private JLabel lblFrom;
+	private JLabel lblSecondsFrom;
+	private JLabel lblSecondsTo;
+	private JSpinner spinnerFrom;
+	private JLabel lblTo;
+	private JSpinner spinnerTo;
 	
 	public Editor(Cancion cancion) {
 		
@@ -107,32 +118,68 @@ public class Editor extends JPanel {
 		panelPrincipal.setBackground(Color.WHITE);
 		panelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 10));
 		add(panelPrincipal, BorderLayout.NORTH);
-		panelPrincipal.setLayout(new GridLayout(0, 2, 0, 0));
+		panelPrincipal.setLayout(new GridLayout(3, 1, 0, 0));
+		
+		JPanel panelTexto = new JPanel();
+		panelTexto.setLayout(new GridLayout(1, 2));
+		panelTexto.setBackground(Color.white);
 		
 		lblSoundTitle = new JLabel("Nombre del archivo: "+cancion.getNombreDelAudio());
 		lblSoundTitle.setFont(robotoDraftMedium);
 		lblSoundTitle.setBackground(new Color(238,238,238));
-		panelPrincipal.add(lblSoundTitle);
+		panelTexto.add(lblSoundTitle);
 		
 		lblSoundSize = new JLabel("Duración: " + cancion.getDuracion() + " seg.");
 		lblSoundSize.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSoundSize.setFont(robotoDraftNormal);
 		lblSoundSize.setBackground(new Color(238,238,238));
-		panelPrincipal.add(lblSoundSize);
+		panelTexto.add(lblSoundSize);
+		
+		panelPrincipal.add(panelTexto);
 		
 		panelActionButton = new JPanel();
 		panelActionButton.setBorder(new EmptyBorder(10, 0, 5, 0));
 		panelActionButton.setBackground(Color.WHITE);
 		panelPrincipal.add(panelActionButton);
 		
+		panelEdicion = new JPanel();
+		panelEdicion.setBackground(Color.white);
+		panelEdicion.setLayout(new BorderLayout());		
+		
+		panelPrincipal.add(panelEdicion);
+		
+		this.panelFrom = new JPanel();
+		this.panelFrom.setBackground(Color.WHITE);
+		panelEdicion.add(this.panelFrom, BorderLayout.WEST);
+		
+		this.lblFrom = new JLabel("De");
+		this.panelFrom.add(this.lblFrom);
+		
+		spinnerFrom = new JSpinner();
+		this.panelFrom.add(spinnerFrom);
+		spinnerFrom.setEditor(new JSpinner.NumberEditor(spinnerFrom));
+		
+		this.lblSecondsFrom = new JLabel("Segs.");
+		this.panelFrom.add(this.lblSecondsFrom);
+		
+		this.panelTo = new JPanel();
+		this.panelTo.setBackground(Color.WHITE);
+		panelEdicion.add(this.panelTo, BorderLayout.EAST);
+		
+		lblTo = new JLabel("A:");
+		this.panelTo.add(lblTo);
+		spinnerTo = new JSpinner();
+		spinnerTo.setValue(cancion.getDuracion());
+		this.panelTo.add(spinnerTo);
+		spinnerTo.setEditor(new JSpinner.NumberEditor(spinnerTo));
+		
+		this.lblSecondsTo = new JLabel("Segs.");
+		this.panelTo.add(this.lblSecondsTo);
+		
 		btnCopy = new JButton();
-		this.modifyButton(btnCopy, "/img/icon-copy.png", "/img/icon-copy-hover.png", "/img/icon-copy-pressed.png", "btnCopy", "Copiar");
-		
 		btnPaste = new JButton();
-		this.modifyButton(btnPaste, "/img/icon-paste.png", "/img/icon-paste-hover.png", "/img/icon-paste-pressed.png", "btnPaste", "Pegar");
-		
 		btnCut = new JButton();
-		this.modifyButton(btnCut, "/img/icon-cut.png", "/img/icon-cut-hover.png", "/img/icon-cut-pressed.png", "btnCut", "Cortar");
+		
 		
 		FlowLayout fl_panelActionButton = new FlowLayout(FlowLayout.LEADING, 5, 5);
 		fl_panelActionButton.setAlignOnBaseline(true);
@@ -142,7 +189,6 @@ public class Editor extends JPanel {
 		panelActionButton.add(btnPaste);
 		
 		btnOpenFile = new JButton("");
-		this.modifyButton(btnOpenFile, "/img/icon-open-file.png", "/img/icon-open-file-hover.png", "/img/icon-open-file-pressed.png", "btnOpenFile", "Abrir archivo");
 		panelActionButton.add(btnOpenFile);
 		
 		panelCenter = new JPanel();
@@ -156,20 +202,16 @@ public class Editor extends JPanel {
 		panelSongButtons.setBackground(Color.white);
 		panelCenter.add(panelSongButtons, BorderLayout.PAGE_END);
 		
-		btnStop = new JButton("");
-		this.modifyButton(btnStop, "/img/icon-stop.png", "/img/icon-stop-hover.png", "/img/icon-stop-pressed.png", "btnStop", "Detener");
+		btnStop = new JButton();
 		panelSongButtons.add(btnStop);
 		
 		btnPrev = new JButton();
-		this.modifyButton(btnPrev, "/img/icon-prev.png", "/img/icon-prev-hover.png", "/img/icon-prev-pressed.png", "btnPrev", "Anterior");
 		panelSongButtons.add(btnPrev);
 		
 		btnPlay = new JButton();
-		this.modifyButton(btnPlay, "/img/icon-play.png", "/img/icon-play-hover.png", "/img/icon-play-pressed.png", "btnPlay", "Play");
 		panelSongButtons.add(btnPlay);
 		
 		btnNext = new JButton();
-		this.modifyButton(btnNext, "/img/icon-next.png", "/img/icon-next-hover.png", "/img/icon-next-pressed.png", "btnNext", "Siguiente");
 		
 		popup = new JPopupMenu();
 		popup.add(new ActionMenu("uno"));
@@ -178,7 +220,7 @@ public class Editor extends JPanel {
 		panelSongButtons.add(btnNext);
 		
 		btnOptions = new JButton("");
-		this.modifyButton(btnOptions, "/img/icon-options.png", "/img/icon-options-hover.png", "/img/icon-options-pressed.png", "btnOptions", "Opciones");
+		
 		btnOptions.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {showOptions(e);}
@@ -192,6 +234,8 @@ public class Editor extends JPanel {
 			public void mouseClicked(MouseEvent e) {}
 		});
 		panelSongButtons.add(btnOptions);
+		
+		this.setIcons();
 	}
 
 	public void showOptions(MouseEvent e) {
@@ -206,15 +250,27 @@ public class Editor extends JPanel {
 	/** Metodo para evitar escribir tanto codigo con los estilos de los botones ya que a todos se les agrega los iconos y el listener
 	 * */
 	public void modifyButton(JButton btn, String icon, String iconHover, String iconPressed, String actionCommand, String tooltip) {
-		btn.setIcon(new ImageIcon("src/img/"+icon));
-		btn.setSelectedIcon(new ImageIcon("src/img/"+iconPressed));
-		btn.setRolloverIcon(new ImageIcon("src/img/"+iconHover));
+		btn.setIcon(new ImageIcon("src/"+icon));
+		btn.setPressedIcon(new ImageIcon("src/"+iconPressed));
+		btn.setRolloverIcon(new ImageIcon("src/"+iconHover));
 		btn.setBorder(null);
 		btn.setBorderPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.setActionCommand(actionCommand);
 		btn.addActionListener(new Events(this));
 		btn.setToolTipText(tooltip);
+	}
+	
+	public void setIcons() {
+		this.modifyButton(btnCut, "/img/icon-cut.png", "/img/icon-cut-hover.png", "/img/icon-cut-pressed.png", "btnCut", "Cortar");
+		this.modifyButton(btnCopy, "/img/icon-copy.png", "/img/icon-copy-hover.png", "/img/icon-copy-pressed.png", "btnCopy", "Copiar");
+		this.modifyButton(btnPaste, "/img/icon-paste.png", "/img/icon-paste-hover.png", "/img/icon-paste-pressed.png", "btnPaste", "Pegar");
+		this.modifyButton(btnOpenFile, "/img/icon-open-file.png", "/img/icon-open-file-hover.png", "/img/icon-open-file-pressed.png", "btnOpenFile", "Abrir archivo");
+		this.modifyButton(btnPlay, "/img/icon-play.png", "/img/icon-play-hover.png", "/img/icon-play-pressed.png", "btnPlay", "Play");
+		this.modifyButton(btnNext, "/img/icon-next.png", "/img/icon-next-hover.png", "/img/icon-next-pressed.png", "btnNext", "Siguiente");
+		this.modifyButton(btnOptions, "/img/icon-options.png", "/img/icon-options-hover.png", "/img/icon-options-pressed.png", "btnOptions", "Opciones");
+		this.modifyButton(btnStop, "/img/icon-stop.png", "/img/icon-stop-hover.png", "/img/icon-stop-pressed.png", "btnStop", "Detener");
+		this.modifyButton(btnPrev, "/img/icon-prev.png", "/img/icon-prev-hover.png", "/img/icon-prev-pressed.png", "btnPrev", "Anterior");
 	}
 		
 	public static void changeIcon(String icon) {

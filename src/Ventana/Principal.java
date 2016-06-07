@@ -125,13 +125,16 @@ public class Principal extends JFrame {
 			cargaArchivo.showOpenDialog(null);
 			String ruta = cargaArchivo.getSelectedFile().getAbsolutePath();
 			if (ruta.contains(".mp3") || ruta.contains(".wav") || ruta.contains(".aiff")) {
-
-				Cancion cancion = new Cancion(ruta);
-				JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
-				Editor editorVentana = new Editor(cancion);
-				setContentPane(editorVentana);
-				revalidate();
-				repaint();
+				new Thread(() -> {
+					Cancion cancion = new Cancion(ruta);
+					JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
+					Editor editorVentana = new Editor(cancion);
+					setContentPane(editorVentana);
+					getContentPane().revalidate();
+					getContentPane().repaint();
+					editorVentana.validate();
+					this.setVisible(true);
+				}).start();
 			} else {
 				JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",
 						JOptionPane.ERROR_MESSAGE);

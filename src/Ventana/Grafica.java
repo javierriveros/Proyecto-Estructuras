@@ -63,4 +63,17 @@ public class Grafica extends JPanel {
 		}
 	}
 
+	/**
+	 * @return the valoresAmplitud
+	 */
+	public Lista getValoresAmplitud() {
+		return valoresAmplitud;
+	}
+
+	/**
+	 * @param valoresAmplitud the valoresAmplitud to set
+	 */
+	public void setValoresAmplitud(Lista valoresAmplitud) {
+		this.valoresAmplitud = valoresAmplitud;
+	}
 }
