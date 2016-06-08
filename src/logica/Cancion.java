@@ -35,7 +35,7 @@ public class Cancion {
 
 	/**
 	 * Metodo que retorna una lista la cual contiene todo los samples de la
-	 * canción.
+	 * canciï¿½n.
 	 * 
 	 * @return Lista con los valores de amplitud
 	 */
@@ -44,7 +44,7 @@ public class Cancion {
 	}
 
 	/**
-	 * Guarda temporalmente la canción como un archivo .wav de nombre "elo".
+	 * Guarda temporalmente la canciï¿½n como un archivo .wav de nombre "elo".
 	 */
 	private void guardarTemporal() {
 		@SuppressWarnings("unused")
@@ -76,7 +76,7 @@ public class Cancion {
 	}
 
 	/**
-	 * Una vez cargado el archivo se puede poner a reproducir con este método.
+	 * Una vez cargado el archivo se puede poner a reproducir con este mï¿½todo.
 	 */
 	public void play() {
 		try {
@@ -110,14 +110,13 @@ public class Cancion {
 		try {
 			player.stop();
 		} catch (BasicPlayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 	}
 
 	public String toString() {
-		String info = "Nombre del archivo: " + this.nombreDelAudio + "\nDuración: " + this.duracion
-				+ "\nNúmero de canales: " + this.channelsNumber + "Resolución de bits: " + this.depth + "\nUbicación:  "
+		String info = "Nombre del archivo: " + this.nombreDelAudio + "\nDuracion: " + this.duracion
+				+ "\nNumero de canales: " + this.channelsNumber + "Resolucion de bits: " + this.depth + "\nUbicacion:  "
 				+ this.location + "\nPropietario: " + System.getProperty("user.name");
 		return info;
 	}
