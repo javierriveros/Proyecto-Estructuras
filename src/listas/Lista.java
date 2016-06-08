@@ -177,11 +177,17 @@ public class Lista {
 			posicion *= segundoFinal;
 			fin = getNodoAt(posicion);
 			inicio.getEnlaceAnteriror().setEnlaceSiguiente(fin.getEnlaceSiguiente());
-			fin.setEnlaceSiguiente(inicio);
-			inicio.setEnlaceAnterior(fin);
+			fin.setEnlaceSiguiente(null);
+			inicio.setEnlaceAnterior(null);
+			cancion.setNodoCopia(inicio);
 			getTamano();
 			cancion.guardadoTemporal();
 		}
+	}
+	
+	public void pegar(int posicion) {
+		Nodo nodo = cancion.getNodoCopia();
+		
 	}
 
 	public Nodo getNodoAt(int posicion) {
