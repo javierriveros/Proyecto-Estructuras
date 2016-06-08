@@ -1,7 +1,10 @@
 package logica;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.sound.sampled.spi.AudioFileReader;
 
 import com.sun.media.sound.AudioFloatConverter;
@@ -12,6 +15,7 @@ import jm.audio.io.AudioFileOut;
 import jm.util.Play;
 import jm.util.Read;
 import listas.Lista;
+import listas.Nodo;
 
 public class Cancion {
 	private String nombreDelAudio;
@@ -21,20 +25,20 @@ public class Cancion {
 	private int samples;
 	private float duracion;
 	private Lista amplitudes;
-	private Hilo hilo;
 	private boolean entro;
+	private Nodo nodoCopia;
 
 	public Cancion(String ruta) {
 		AudioFileIn archivo = new AudioFileIn(ruta);
 		channelsNumber = archivo.getChannels();
 		sampleRate = archivo.getSampleRate();
 		depth = archivo.getBitResolution();
-		amplitudes = new Lista(archivo.getSampleData());
+		amplitudes = new Lista(archivo.getSampleData(), this);
 		String name[] = ruta.split(Pattern.quote("\\"));
 		nombreDelAudio = name[name.length - 1];
 		duracion = amplitudes.getTamano() / sampleRate;
-		hilo = new Hilo();
-
+		nodoCopia = null;
+		
 		guardarTemporal();
 	}
 
@@ -59,22 +63,24 @@ public class Cancion {
 	}
 
 	public void play() {
-		hilo.run();
+		
+	}
+	
+	public void setNodoCopia(Nodo nodo) {
+		this.nodoCopia = nodo;
+	}
+	
+	public Nodo getNodoCopia() {
+		return nodoCopia;
 	}
 
 	public void pause() {
-		Play.pauseAudio();
+		System.out.println("Se llama a pausar");
+		// hilo.pause();
 	}
 
 	public void stop() {
 		Play.stopAudio();
 	}
 
-	private class Hilo extends Thread {
-
-		@Override
-		public void run() {
-			Play.audioFile("elo.wav");
-		}
-	}
 }

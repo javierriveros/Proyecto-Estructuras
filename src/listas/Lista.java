@@ -1,10 +1,15 @@
 package listas;
 
+import javax.swing.JOptionPane;
+
+import logica.Cancion;
+
 public class Lista {
 
 	private Nodo raiz;
 	private int numElementos;
 	private float amplitudMaxima;
+	private Cancion cancion;
 
 	public Lista() {
 		this.raiz = null;
@@ -12,11 +17,12 @@ public class Lista {
 		amplitudMaxima = 0;
 	}
 
-	public Lista(float[] valores) {
+	public Lista(float[] valores, Cancion cancion) {
+		this.cancion = cancion;
 		numElementos = 0;
 		raiz = null;
 		amplitudMaxima = 0;
-		for(int i = 0; i < valores.length; i++) {
+		for (int i = 0; i < valores.length; i++) {
 			this.insertarUltimo(valores[i]);
 		}
 	}
@@ -53,7 +59,7 @@ public class Lista {
 			this.raiz.getEnlaceAnteriror().setEnlaceSiguiente(nuevo);
 			this.raiz.setEnlaceAnterior(nuevo);
 		}
-		if(amplitud > amplitudMaxima) {
+		if (amplitud > amplitudMaxima) {
 			amplitudMaxima = amplitud;
 		}
 		numElementos++;
@@ -157,32 +163,67 @@ public class Lista {
 			return Float.MAX_VALUE;
 		}
 	}
-	
-	public void pasteFromCopy(Nodo inicial, Nodo terminal,  int posicion) {
-		
+
+	public void cortar(int segundoInicio, int segundoFinal) {
+		Nodo inicio;
+		Nodo fin;
+		if (segundoInicio == 0 && segundoFinal == cancion.getDuracion()) {
+			JOptionPane.showMessageDialog(null, "Tiene sentido cortar toda la canción??");
+		} else {
+			int posicion = (int) (this.numElementos / cancion.getDuracion());
+			posicion *= segundoInicio;
+			inicio = getNodoAt(posicion);
+			posicion = (int) (this.numElementos / cancion.getDuracion());
+			posicion *= segundoFinal;
+			fin = getNodoAt(posicion);
+			inicio.getEnlaceAnteriror().setEnlaceSiguiente(fin.getEnlaceSiguiente());
+			fin.setEnlaceSiguiente(inicio);
+			inicio.setEnlaceAnterior(fin);
+			getTamano();
+			cancion.guardadoTemporal();
+		}
 	}
-	
-	public int getTamano(){
+
+	public Nodo getNodoAt(int posicion) {
+		Nodo nodo = raiz;
+		if (posicion >= 1 && posicion <= numElementos && !isEmpty()) {
+			for (int i = 1; i < posicion; i++) {
+				nodo = nodo.getEnlaceSiguiente();
+			}
+		}
+		return nodo;
+	}
+
+	public int getTamano() {
+		Nodo reco = raiz;
+		numElementos = 1;
+		while(reco.getEnlaceSiguiente() != raiz) {
+			reco.getEnlaceSiguiente();
+			numElementos++;
+		}
+		if(raiz == null) {
+			numElementos = 0;
+		}
 		return numElementos;
 	}
-	
+
 	public float getAmplitudMaxima() {
 		return amplitudMaxima;
 	}
-	
-	public float[] toFloatArray(){
+
+	public float[] toFloatArray() {
 		float[] data = new float[numElementos];
 		Nodo recorrido = raiz;
-		for(int i = 0; i < data.length; i++) {
+		for (int i = 0; i < data.length; i++) {
 			data[i] = recorrido.getAmplitud();
 			recorrido = recorrido.getEnlaceSiguiente();
 		}
 		return data;
 	}
-	
+
 	public void mostrar() {
 		Nodo recorrido = raiz;
-		while(recorrido.getEnlaceSiguiente() != raiz) {
+		while (recorrido.getEnlaceSiguiente() != raiz) {
 			System.out.println(recorrido.getAmplitud());
 			recorrido = recorrido.getEnlaceSiguiente();
 		}
