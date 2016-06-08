@@ -184,17 +184,36 @@ public class Lista {
 			cancion.guardadoTemporal();
 		}
 	}
+
+	public void copiar(int segundoInicio, int segundoFinal) {
+		Lista listaTemporal = new Lista();
+		int posicion = (int) (numElementos / cancion.getDuracion());
+		int pos = posicion * segundoInicio;
+		int pos2 = posicion * segundoFinal;
+		Nodo reco = raiz;
+		int contador = 1;
+		while(reco.getEnlaceSiguiente() != raiz) {
+			if(contador >= pos && contador <= pos2) {
+				listaTemporal.insertarUltimo(reco.getAmplitud());
+			}
+			contador++;
+		}
+	}
 	
+	public void pegarFromCopy(int posicion) {
+		
+	}
+
 	public void pegar(int posicion) {
 		Nodo nodo = cancion.getNodoCopia();
 		Nodo reco = raiz;
 		int pos = (int) (numElementos / cancion.getDuracion());
 		pos *= posicion;
-		for(int i = 1; i <= pos; i++) {
+		for (int i = 1; i <= pos; i++) {
 			reco = reco.getEnlaceSiguiente();
 		}
 		nodo.setEnlaceAnterior(reco);
-		while(nodo.getEnlaceSiguiente() != null) {
+		while (nodo.getEnlaceSiguiente() != null) {
 			nodo = nodo.getEnlaceSiguiente();
 		}
 		nodo.setEnlaceSiguiente(reco.getEnlaceSiguiente());
@@ -205,8 +224,9 @@ public class Lista {
 	}
 
 	public Nodo getNodoAt(int posicion) {
-		Nodo nodo = raiz;
+		Nodo nodo = null;
 		if (posicion >= 1 && posicion <= numElementos && !isEmpty()) {
+			nodo = raiz;
 			for (int i = 1; i < posicion; i++) {
 				nodo = nodo.getEnlaceSiguiente();
 			}
@@ -217,11 +237,11 @@ public class Lista {
 	public int getTamano() {
 		Nodo reco = raiz;
 		numElementos = 1;
-		while(reco.getEnlaceSiguiente() != raiz) {
+		while (reco.getEnlaceSiguiente() != raiz) {
 			reco.getEnlaceSiguiente();
 			numElementos++;
 		}
-		if(raiz == null) {
+		if (raiz == null) {
 			numElementos = 0;
 		}
 		return numElementos;
