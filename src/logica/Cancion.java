@@ -58,13 +58,27 @@ public class Cancion {
 		return duracion;
 	}
 
+	public void cargarArchivo(){
+		try{
+			player.open(new File("elo.wav"));
+		} catch(Exception ex) {
+			
+		}
+	}
+	
 	public void play() {
 		try {
-			player.open(new File("elo.wav"));
 			player.play();
-		} catch (BasicPlayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch(Exception ex) {
+			
+		}
+	}
+	
+	public void resume() {
+		try{
+			player.resume();
+		} catch(Exception ex) {
+			
 		}
 	}
 	
@@ -77,12 +91,20 @@ public class Cancion {
 	}
 
 	public void pause() {
-		System.out.println("Se llama a pausar");
-		// hilo.pause();
+		try {
+			player.pause();
+		} catch (BasicPlayerException e) {
+			
+		}
 	}
 
 	public void stop() {
-		Play.stopAudio();
+		try {
+			player.stop();
+		} catch (BasicPlayerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public String toString() {
