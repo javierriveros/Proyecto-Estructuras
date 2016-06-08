@@ -70,6 +70,8 @@ public class Principal extends JFrame {
 
 		elMenuBar();
 		decoracionVentana();
+		
+		System.out.println(System.getProperties());
 	}
 
 	private void elMenuBar() {

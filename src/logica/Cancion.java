@@ -1,19 +1,8 @@
 package logica;
-
-import java.io.File;
 import java.util.regex.Pattern;
-
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.spi.AudioFileReader;
-
-import com.sun.media.sound.AudioFloatConverter;
-
-import jm.audio.Audio;
 import jm.audio.io.AudioFileIn;
 import jm.audio.io.AudioFileOut;
 import jm.util.Play;
-import jm.util.Read;
 import listas.Lista;
 import listas.Nodo;
 
@@ -27,6 +16,7 @@ public class Cancion {
 	private Lista amplitudes;
 	private boolean entro;
 	private Nodo nodoCopia;
+	private String location;
 
 	public Cancion(String ruta) {
 		AudioFileIn archivo = new AudioFileIn(ruta);
@@ -38,7 +28,7 @@ public class Cancion {
 		nombreDelAudio = name[name.length - 1];
 		duracion = amplitudes.getTamano() / sampleRate;
 		nodoCopia = null;
-		
+		location = ruta;
 		guardarTemporal();
 	}
 
@@ -83,4 +73,13 @@ public class Cancion {
 		Play.stopAudio();
 	}
 
+	public String toString() {
+		String info = "Nombre del archivo: " + this.nombreDelAudio
+				+ "\nDuración: " + this.duracion
+				+ "\nNúmero de canales: " + this.channelsNumber
+				+ "Resolución de bits: " + this.depth
+				+ "\nUbicación:  " + this.location
+				+ "\nPropietario: " + System.getProperty("user.name");
+		return info;
+	}
 }

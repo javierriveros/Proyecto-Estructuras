@@ -64,19 +64,15 @@ public class Editor extends JPanel {
 	private JButton btnCut;
 	private JButton btnPaste;
 	private JButton btnOpenFile;
-	// Se cambia la visibilidad a public y static para poder cambiar el icono
-	// dinamicamente desde la clase Events
-	public static JButton btnPlay;
-	private JButton btnPrev;
-	private JButton btnNext;
+	private JButton btnPlay;
 
 	private JPopupMenu popup;
 	private JButton btnStop;
 	private JButton btnOptions;
 
-	public static Cancion cancion;
+	private Cancion cancion;
 
-	public static boolean play;
+	private boolean play;
 	private JPanel panelFrom;
 	private JPanel panelTo;
 	private JLabel lblFrom;
@@ -130,7 +126,7 @@ public class Editor extends JPanel {
 		lblSoundTitle.setBackground(new Color(238, 238, 238));
 		panelTexto.add(lblSoundTitle);
 
-		lblSoundSize = new JLabel("Duración: " + cancion.getDuracion() + " seg.");
+		lblSoundSize = new JLabel("Duraciï¿½n: " + cancion.getDuracion() + " seg.");
 		lblSoundSize.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSoundSize.setFont(robotoDraftNormal);
 		lblSoundSize.setBackground(new Color(238, 238, 238));
@@ -205,54 +201,12 @@ public class Editor extends JPanel {
 		btnStop = new JButton();
 		panelSongButtons.add(btnStop);
 
-		btnPrev = new JButton();
-		panelSongButtons.add(btnPrev);
-
 		btnPlay = new JButton();
 		panelSongButtons.add(btnPlay);
 
-		btnNext = new JButton();
-
-		popup = new JPopupMenu();
-		popup.add(new ActionMenu("uno"));
-		popup.add(new ActionMenu("dos"));
-		popup.add(new ActionMenu("tres"));
-		panelSongButtons.add(btnNext);
-
 		btnOptions = new JButton("");
-		btnOptions.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				showOptions(e);
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
 		panelSongButtons.add(btnOptions);
 		this.setIcons();
-	}
-
-	public void showOptions(MouseEvent e) {
-		if (e.isPopupTrigger()) {
-			popup.setLocation(e.getLocationOnScreen());
-			popup.setVisible(true);
-		} else {
-			popup.setVisible(false);
-		}
 	}
 
 	/**
@@ -283,20 +237,16 @@ public class Editor extends JPanel {
 				"/img/icon-open-file-pressed.png", "btnOpenFile", "Abrir archivo");
 		this.modifyButton(btnPlay, "/img/icon-play.png", "/img/icon-play-hover.png", "/img/icon-play-pressed.png",
 				"btnPlay", "Play");
-		this.modifyButton(btnNext, "/img/icon-next.png", "/img/icon-next-hover.png", "/img/icon-next-pressed.png",
-				"btnNext", "Siguiente");
 		this.modifyButton(btnOptions, "/img/icon-options.png", "/img/icon-options-hover.png",
 				"/img/icon-options-pressed.png", "btnOptions", "Opciones");
 		this.modifyButton(btnStop, "/img/icon-stop.png", "/img/icon-stop-hover.png", "/img/icon-stop-pressed.png",
 				"btnStop", "Detener");
-		this.modifyButton(btnPrev, "/img/icon-prev.png", "/img/icon-prev-hover.png", "/img/icon-prev-pressed.png",
-				"btnPrev", "Anterior");
 	}
 
-	public static void changeIcon(String icon) {
-		Editor.btnPlay.setIcon(new ImageIcon(Principal.class.getResource("/img/" + icon + ".png")));
-		Editor.btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/" + icon + "-pressed.png")));
-		Editor.btnPlay.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/" + icon + "-hover.png")));
+	public void changeIcon(String icon) {
+		btnPlay.setIcon(new ImageIcon(Principal.class.getResource("/img/" + icon + ".png")));
+		btnPlay.setSelectedIcon(new ImageIcon(Principal.class.getResource("/img/" + icon + "-pressed.png")));
+		btnPlay.setRolloverIcon(new ImageIcon(Principal.class.getResource("/img/" + icon + "-hover.png")));
 	}
 
 	/**
@@ -308,44 +258,6 @@ public class Editor extends JPanel {
 
 	public Cancion getCancion() {
 		return cancion;
-	}
-
-	/**
-	 * @param panelActionButton
-	 *            the panelActionButton to set
-	 */
-	public void setPanelActionButton(JPanel panelActionButton) {
-		this.panelActionButton = panelActionButton;
-	}
-
-	/**
-	 * @return the panelPrincipal
-	 */
-	public JPanel getPanelPrincipal() {
-		return panelPrincipal;
-	}
-
-	/**
-	 * @param panelPrincipal
-	 *            the panelPrincipal to set
-	 */
-	public void setPanelPrincipal(JPanel panelPrincipal) {
-		this.panelPrincipal = panelPrincipal;
-	}
-
-	/**
-	 * @return the panelCenter
-	 */
-	public JPanel getPanelCenter() {
-		return panelCenter;
-	}
-
-	/**
-	 * @param panelCenter
-	 *            the panelCenter to set
-	 */
-	public void setPanelCenter(JPanel panelCenter) {
-		this.panelCenter = panelCenter;
 	}
 
 	/**
@@ -361,51 +273,6 @@ public class Editor extends JPanel {
 	 */
 	public void setPanelGrafica(Grafica panelGrafica) {
 		this.panelGrafica = panelGrafica;
-	}
-
-	/**
-	 * @return the panelSongButtons
-	 */
-	public JPanel getPanelSongButtons() {
-		return panelSongButtons;
-	}
-
-	/**
-	 * @param panelSongButtons
-	 *            the panelSongButtons to set
-	 */
-	public void setPanelSongButtons(JPanel panelSongButtons) {
-		this.panelSongButtons = panelSongButtons;
-	}
-
-	/**
-	 * @return the robotoDraftNormal
-	 */
-	public Font getRobotoDraftNormal() {
-		return robotoDraftNormal;
-	}
-
-	/**
-	 * @param robotoDraftNormal
-	 *            the robotoDraftNormal to set
-	 */
-	public void setRobotoDraftNormal(Font robotoDraftNormal) {
-		this.robotoDraftNormal = robotoDraftNormal;
-	}
-
-	/**
-	 * @return the robotoDraftMedium
-	 */
-	public Font getRobotoDraftMedium() {
-		return robotoDraftMedium;
-	}
-
-	/**
-	 * @param robotoDraftMedium
-	 *            the robotoDraftMedium to set
-	 */
-	public void setRobotoDraftMedium(Font robotoDraftMedium) {
-		this.robotoDraftMedium = robotoDraftMedium;
 	}
 
 	/**
@@ -467,65 +334,70 @@ public class Editor extends JPanel {
 	public void setBtnOpenFile(JButton btnOpenFile) {
 		this.btnOpenFile = btnOpenFile;
 	}
-
+	
 	/**
-	 * @return the btnPrev
+	 * @return the btnPlay
 	 */
-	public JButton getBtnPrev() {
-		return btnPrev;
+	public JButton getBtnPlay() {
+		return btnPlay;
 	}
 
 	/**
-	 * @param btnPrev
-	 *            the btnPrev to set
+	 * @param btnPlay the btnPlay to set
 	 */
-	public void setBtnPrev(JButton btnPrev) {
-		this.btnPrev = btnPrev;
+	public void setBtnPlay(JButton btnPlay) {
+		this.btnPlay = btnPlay;
 	}
 
 	/**
-	 * @return the btnNext
+	 * @return the play
 	 */
-	public JButton getBtnNext() {
-		return btnNext;
+	public boolean isPlay() {
+		return play;
 	}
 
 	/**
-	 * @param btnNext
-	 *            the btnNext to set
+	 * @param play the play to set
 	 */
-	public void setBtnNext(JButton btnNext) {
-		this.btnNext = btnNext;
+	public void setPlay(boolean play) {
+		this.play = play;
 	}
 
 	/**
-	 * @return the btnStop
+	 * @return the spinnerFrom
 	 */
-	public JButton getBtnStop() {
-		return btnStop;
+	public JSpinner getSpinnerFrom() {
+		return spinnerFrom;
 	}
 
 	/**
-	 * @param btnStop
-	 *            the btnStop to set
+	 * @param spinnerFrom the spinnerFrom to set
 	 */
-	public void setBtnStop(JButton btnStop) {
-		this.btnStop = btnStop;
+	public void setSpinnerFrom(JSpinner spinnerFrom) {
+		this.spinnerFrom = spinnerFrom;
 	}
 
 	/**
-	 * @return the btnOptions
+	 * @return the spinnerTo
 	 */
-	public JButton getBtnOptions() {
-		return btnOptions;
+	public JSpinner getSpinnerTo() {
+		return spinnerTo;
 	}
 
 	/**
-	 * @param btnOptions
-	 *            the btnOptions to set
+	 * @param spinnerTo the spinnerTo to set
 	 */
-	public void setBtnOptions(JButton btnOptions) {
-		this.btnOptions = btnOptions;
+	public void setSpinnerTo(JSpinner spinnerTo) {
+		this.spinnerTo = spinnerTo;
 	}
+
+	/**
+	 * @param cancion the cancion to set
+	 */
+	public void setCancion(Cancion cancion) {
+		this.cancion = cancion;
+	}
+	
+	
 
 }
