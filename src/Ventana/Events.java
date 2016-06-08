@@ -19,12 +19,17 @@ public class Events implements ActionListener {
 		switch(e.getActionCommand()) {
 			case "btnCopy":
 				System.out.println("COPY");
+				verifySpinners();
 				break;
 			case "btnPaste":
 				System.out.println("PASTE");
+				verifySpinners();
 				break;
 			case "btnCut":
 				System.out.println("CUT");
+				if (verifySpinners()) {
+					frame.getCancion().getAmplitudes().cortar(Integer.parseInt(frame.getSpinnerFrom().getValue().toString()),Integer.parseInt(frame.getSpinnerTo().getValue().toString()));
+				}
 				break;
 			case "btnOpenFile":
 				System.out.println("OPEN FILE");
@@ -56,7 +61,7 @@ public class Events implements ActionListener {
 		}
 	}
 	
-	public void verifySpinners() {
+	public boolean verifySpinners() {
 		String vSpinnerFrom = frame.getSpinnerFrom().getValue().toString();
 		String vSpinnerTo = frame.getSpinnerTo().getValue().toString();
 		if(isNumber(vSpinnerFrom) && isNumber(vSpinnerTo)) {
@@ -64,6 +69,9 @@ public class Events implements ActionListener {
 			int iSpinnerTo = Integer.parseInt(vSpinnerTo.toString());
 			if(iSpinnerFrom > iSpinnerTo || iSpinnerTo > frame.getCancion().getDuracion())
 				JOptionPane.showMessageDialog(frame, "No has seleccionado un intervalo válido", "Error", JOptionPane.WARNING_MESSAGE);
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
