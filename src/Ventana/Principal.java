@@ -95,6 +95,11 @@ public class Principal extends JFrame {
 		menuBar.add(mnAyuda);
 
 		JMenuItem mntmAcercaDeAuditor = new JMenuItem("Acerca de AudiTor");
+		mntmAcercaDeAuditor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		mnAyuda.add(mntmAcercaDeAuditor);
 	}
 

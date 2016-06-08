@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="src/librerias/jMusic1.6.4.jar"/>
+	<classpathentry kind="lib" path="src/librerias/basicplayer3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
