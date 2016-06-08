@@ -177,16 +177,56 @@ public class Lista {
 			posicion *= segundoFinal;
 			fin = getNodoAt(posicion);
 			inicio.getEnlaceAnteriror().setEnlaceSiguiente(fin.getEnlaceSiguiente());
-			fin.setEnlaceSiguiente(inicio);
-			inicio.setEnlaceAnterior(fin);
+			fin.setEnlaceSiguiente(null);
+			inicio.setEnlaceAnterior(null);
+			cancion.setNodoCopia(inicio);
 			getTamano();
 			cancion.guardadoTemporal();
 		}
 	}
 
+	public void copiar(int segundoInicio, int segundoFinal) {
+		Lista listaTemporal = new Lista();
+		int posicion = (int) (numElementos / cancion.getDuracion());
+		int pos = posicion * segundoInicio;
+		int pos2 = posicion * segundoFinal;
+		Nodo reco = raiz;
+		int contador = 1;
+		while(reco.getEnlaceSiguiente() != raiz) {
+			if(contador >= pos && contador <= pos2) {
+				listaTemporal.insertarUltimo(reco.getAmplitud());
+			}
+			contador++;
+		}
+	}
+	
+	public void pegarFromCopy(int posicion) {
+		
+	}
+
+	public void pegar(int posicion) {
+		Nodo nodo = cancion.getNodoCopia();
+		Nodo reco = raiz;
+		int pos = (int) (numElementos / cancion.getDuracion());
+		pos *= posicion;
+		for (int i = 1; i <= pos; i++) {
+			reco = reco.getEnlaceSiguiente();
+		}
+		nodo.setEnlaceAnterior(reco);
+		while (nodo.getEnlaceSiguiente() != null) {
+			nodo = nodo.getEnlaceSiguiente();
+		}
+		nodo.setEnlaceSiguiente(reco.getEnlaceSiguiente());
+		reco.setEnlaceSiguiente(nodo);
+		cancion.setNodoCopia(null);
+		getTamano();
+		cancion.guardadoTemporal();
+	}
+
 	public Nodo getNodoAt(int posicion) {
-		Nodo nodo = raiz;
+		Nodo nodo = null;
 		if (posicion >= 1 && posicion <= numElementos && !isEmpty()) {
+			nodo = raiz;
 			for (int i = 1; i < posicion; i++) {
 				nodo = nodo.getEnlaceSiguiente();
 			}
@@ -197,11 +237,11 @@ public class Lista {
 	public int getTamano() {
 		Nodo reco = raiz;
 		numElementos = 1;
-		while(reco.getEnlaceSiguiente() != raiz) {
+		while (reco.getEnlaceSiguiente() != raiz) {
 			reco.getEnlaceSiguiente();
 			numElementos++;
 		}
-		if(raiz == null) {
+		if (raiz == null) {
 			numElementos = 0;
 		}
 		return numElementos;
