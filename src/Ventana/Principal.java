@@ -70,8 +70,6 @@ public class Principal extends JFrame {
 
 		elMenuBar();
 		decoracionVentana();
-		
-		System.out.println(System.getProperties());
 	}
 
 	private void elMenuBar() {
@@ -134,8 +132,6 @@ public class Principal extends JFrame {
 					setContentPane(editorVentana);
 					getContentPane().revalidate();
 					getContentPane().repaint();
-
-			//		this.setVisible(true);
 				}).start();
 			} else {
 				JOptionPane.showMessageDialog(null, "Extensión de archivo no compatible", "Error",
