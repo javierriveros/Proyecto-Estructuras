@@ -3,31 +3,17 @@ package Ventana;
 import static javax.swing.SwingUtilities.updateComponentTreeUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
 import javax.swing.border.EmptyBorder;
 
-import jm.util.Read;
-import listas.Lista;
 import logica.Cancion;
 
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -35,18 +21,10 @@ import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Toolkit;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 
 public class Editor extends JPanel {
 
-	// private JPanel contentPane;
 	private JPanel panelActionButton;
 	private JPanel panelPrincipal;
 	private JPanel panelCenter;
@@ -59,11 +37,6 @@ public class Editor extends JPanel {
 
 	private JLabel lblSoundTitle;
 	private JLabel lblSoundSize;
-
-	private JButton btnCopy;
-	private JButton btnCut;
-	private JButton btnPaste;
-	private JButton btnOpenFile;
 	private JButton btnPlay;
 
 	private JPopupMenu popup;
@@ -86,18 +59,8 @@ public class Editor extends JPanel {
 
 		this.cancion = cancion;
 		play = true;
-		
-
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// setSize(900, 650);
-		// setTitle("AudiTor");
-		// setLocationRelativeTo(null);
-		// setExtendedState(JFrame.MAXIMIZED_BOTH);
-		// elMenuBar();
-		// contentPane = new JPanel();
 		setBorder(new EmptyBorder(0, 0, 0, 0));
 		setLayout(new BorderLayout(0, 0));
-		// add(contentPane);
 
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -173,19 +136,12 @@ public class Editor extends JPanel {
 		this.lblSecondsTo = new JLabel("Segs.");
 		this.panelTo.add(this.lblSecondsTo);
 
-		btnCopy = new JButton();
-		btnPaste = new JButton();
-		btnCut = new JButton();
+
 
 		FlowLayout fl_panelActionButton = new FlowLayout(FlowLayout.LEADING, 5, 5);
 		fl_panelActionButton.setAlignOnBaseline(true);
 		panelActionButton.setLayout(fl_panelActionButton);
-		panelActionButton.add(btnCopy);
-		panelActionButton.add(btnCut);
-		panelActionButton.add(btnPaste);
 
-		btnOpenFile = new JButton("");
-		panelActionButton.add(btnOpenFile);
 
 		panelCenter = new JPanel();
 		add(panelCenter, BorderLayout.CENTER);
@@ -227,14 +183,6 @@ public class Editor extends JPanel {
 	}
 
 	public void setIcons() {
-		this.modifyButton(btnCut, "/img/icon-cut.png", "/img/icon-cut-hover.png", "/img/icon-cut-pressed.png", "btnCut",
-				"Cortar");
-		this.modifyButton(btnCopy, "/img/icon-copy.png", "/img/icon-copy-hover.png", "/img/icon-copy-pressed.png",
-				"btnCopy", "Copiar");
-		this.modifyButton(btnPaste, "/img/icon-paste.png", "/img/icon-paste-hover.png", "/img/icon-paste-pressed.png",
-				"btnPaste", "Pegar");
-		this.modifyButton(btnOpenFile, "/img/icon-open-file.png", "/img/icon-open-file-hover.png",
-				"/img/icon-open-file-pressed.png", "btnOpenFile", "Abrir archivo");
 		this.modifyButton(btnPlay, "/img/icon-play.png", "/img/icon-play-hover.png", "/img/icon-play-pressed.png",
 				"btnPlay", "Play");
 		this.modifyButton(btnOptions, "/img/icon-options.png", "/img/icon-options-hover.png",
@@ -273,66 +221,6 @@ public class Editor extends JPanel {
 	 */
 	public void setPanelGrafica(Grafica panelGrafica) {
 		this.panelGrafica = panelGrafica;
-	}
-
-	/**
-	 * @return the btnCopy
-	 */
-	public JButton getBtnCopy() {
-		return btnCopy;
-	}
-
-	/**
-	 * @param btnCopy
-	 *            the btnCopy to set
-	 */
-	public void setBtnCopy(JButton btnCopy) {
-		this.btnCopy = btnCopy;
-	}
-
-	/**
-	 * @return the btnCut
-	 */
-	public JButton getBtnCut() {
-		return btnCut;
-	}
-
-	/**
-	 * @param btnCut
-	 *            the btnCut to set
-	 */
-	public void setBtnCut(JButton btnCut) {
-		this.btnCut = btnCut;
-	}
-
-	/**
-	 * @return the btnPaste
-	 */
-	public JButton getBtnPaste() {
-		return btnPaste;
-	}
-
-	/**
-	 * @param btnPaste
-	 *            the btnPaste to set
-	 */
-	public void setBtnPaste(JButton btnPaste) {
-		this.btnPaste = btnPaste;
-	}
-
-	/**
-	 * @return the btnOpenFile
-	 */
-	public JButton getBtnOpenFile() {
-		return btnOpenFile;
-	}
-
-	/**
-	 * @param btnOpenFile
-	 *            the btnOpenFile to set
-	 */
-	public void setBtnOpenFile(JButton btnOpenFile) {
-		this.btnOpenFile = btnOpenFile;
 	}
 	
 	/**

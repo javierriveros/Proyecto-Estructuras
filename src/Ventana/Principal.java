@@ -97,7 +97,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmAcercaDeAuditor = new JMenuItem("Acerca de AudiTor");
 		mntmAcercaDeAuditor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				JOptionPane.showMessageDialog(null, "AudiTor es un proyecto sobre la implementación de listas enlazadas para arhivos de audio en formato .wav.");
 			}
 		});
 		mnAyuda.add(mntmAcercaDeAuditor);

@@ -20,33 +20,7 @@ public class Events implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
-			case "btnCopy":
-				System.out.println("COPY");
-				verifySpinners();
-				break;
-			case "btnPaste":
-				System.out.println("PASTE");
-				verifySpinners();
-				break;
-			case "btnCut":
-				System.out.println("CUT");
-				if (verifySpinners()) {
-					frame.getCancion().getAmplitudes().cortar(Integer.parseInt(frame.getSpinnerFrom().getValue().toString()),Integer.parseInt(frame.getSpinnerTo().getValue().toString()));
-				}
-				break;
-			case "btnOpenFile":
-				System.out.println("OPEN FILE");
-				break;
-			case "btnStop":
-				System.out.println("STOP");
-				frame.getCancion().stop();
-				frame.changeIcon("icon-play");
-				frame.setPlay(true);
-				estaReproduciendo = false;
-				break;
-			case "btnPrev":
-				System.out.println("PREVIOUS");
-				break;
+		
 			case "btnPlay":
 				if (frame.isPlay() && estaReproduciendo == false) {
 					System.out.println("First Play");
@@ -70,7 +44,7 @@ public class Events implements ActionListener {
 				System.out.println("NEXT");
 				break;
 			case "btnOptions":
-				JOptionPane.showMessageDialog(frame, frame.getCancion(), "Información del audio", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(frame, frame.getCancion(), "Informaciï¿½n del audio", JOptionPane.INFORMATION_MESSAGE);
 				break;
 		}
 	}
@@ -82,7 +56,7 @@ public class Events implements ActionListener {
 			int iSpinnerFrom = Integer.parseInt(vSpinnerFrom.toString());
 			int iSpinnerTo = Integer.parseInt(vSpinnerTo.toString());
 			if (iSpinnerFrom > iSpinnerTo || iSpinnerTo > frame.getCancion().getDuracion())
-				JOptionPane.showMessageDialog(frame, "No has seleccionado un intervalo válido", "Error",
+				JOptionPane.showMessageDialog(frame, "No has seleccionado un intervalo vï¿½lido", "Error",
 						JOptionPane.WARNING_MESSAGE);
 			return true;
 		} else {

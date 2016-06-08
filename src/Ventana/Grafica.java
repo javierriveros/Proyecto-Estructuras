@@ -26,10 +26,6 @@ public class Grafica extends JPanel {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-
-//		g2d.setColor(Color.BLACK);
-	//	g2d.drawLine(0, this.getHeight() / 2, this.getWidth(), this.getHeight() / 2);
-
 		if (valoresAmplitud.getTamano() != 0) {
 			dibujarLineas(g2d);
 		}
