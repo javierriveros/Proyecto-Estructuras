@@ -238,7 +238,7 @@ public class Lista {
 		Nodo reco = raiz;
 		numElementos = 1;
 		while (reco.getEnlaceSiguiente() != raiz) {
-			reco.getEnlaceSiguiente();
+			reco = reco.getEnlaceSiguiente();
 			numElementos++;
 		}
 		if (raiz == null) {
