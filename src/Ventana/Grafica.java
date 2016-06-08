@@ -6,12 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
-
-import jm.util.Read;
 import listas.Lista;
 
 public class Grafica extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Lista valoresAmplitud;
 
 	public Grafica(Lista valoresAmplitud) {

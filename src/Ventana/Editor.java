@@ -4,8 +4,6 @@ import static javax.swing.SwingUtilities.updateComponentTreeUI;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
 
 import logica.Cancion;
@@ -25,6 +23,10 @@ import java.awt.Color;
 
 public class Editor extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panelActionButton;
 	private JPanel panelPrincipal;
 	private JPanel panelCenter;
@@ -39,7 +41,6 @@ public class Editor extends JPanel {
 	private JLabel lblSoundSize;
 	private JButton btnPlay;
 
-	private JPopupMenu popup;
 	private JButton btnStop;
 	private JButton btnOptions;
 
@@ -48,12 +49,6 @@ public class Editor extends JPanel {
 	private boolean play;
 	private JPanel panelFrom;
 	private JPanel panelTo;
-	private JLabel lblFrom;
-	private JLabel lblSecondsFrom;
-	private JLabel lblSecondsTo;
-	private JSpinner spinnerFrom;
-	private JLabel lblTo;
-	private JSpinner spinnerTo;
 
 	public Editor(Cancion cancion) {
 
@@ -112,31 +107,9 @@ public class Editor extends JPanel {
 		this.panelFrom.setBackground(Color.WHITE);
 		panelEdicion.add(this.panelFrom, BorderLayout.WEST);
 
-		this.lblFrom = new JLabel("De");
-		this.panelFrom.add(this.lblFrom);
-
-		spinnerFrom = new JSpinner();
-		this.panelFrom.add(spinnerFrom);
-		spinnerFrom.setEditor(new JSpinner.NumberEditor(spinnerFrom));
-
-		this.lblSecondsFrom = new JLabel("Segs.");
-		this.panelFrom.add(this.lblSecondsFrom);
-
 		this.panelTo = new JPanel();
 		this.panelTo.setBackground(Color.WHITE);
 		panelEdicion.add(this.panelTo, BorderLayout.EAST);
-
-		lblTo = new JLabel("A:");
-		this.panelTo.add(lblTo);
-		spinnerTo = new JSpinner();
-		spinnerTo.setValue(cancion.getDuracion());
-		this.panelTo.add(spinnerTo);
-		spinnerTo.setEditor(new JSpinner.NumberEditor(spinnerTo));
-
-		this.lblSecondsTo = new JLabel("Segs.");
-		this.panelTo.add(this.lblSecondsTo);
-
-
 
 		FlowLayout fl_panelActionButton = new FlowLayout(FlowLayout.LEADING, 5, 5);
 		fl_panelActionButton.setAlignOnBaseline(true);
@@ -163,6 +136,7 @@ public class Editor extends JPanel {
 		btnOptions = new JButton("");
 		panelSongButtons.add(btnOptions);
 		this.setIcons();
+		
 	}
 
 	/**
@@ -249,34 +223,6 @@ public class Editor extends JPanel {
 	 */
 	public void setPlay(boolean play) {
 		this.play = play;
-	}
-
-	/**
-	 * @return the spinnerFrom
-	 */
-	public JSpinner getSpinnerFrom() {
-		return spinnerFrom;
-	}
-
-	/**
-	 * @param spinnerFrom the spinnerFrom to set
-	 */
-	public void setSpinnerFrom(JSpinner spinnerFrom) {
-		this.spinnerFrom = spinnerFrom;
-	}
-
-	/**
-	 * @return the spinnerTo
-	 */
-	public JSpinner getSpinnerTo() {
-		return spinnerTo;
-	}
-
-	/**
-	 * @param spinnerTo the spinnerTo to set
-	 */
-	public void setSpinnerTo(JSpinner spinnerTo) {
-		this.spinnerTo = spinnerTo;
 	}
 
 	/**

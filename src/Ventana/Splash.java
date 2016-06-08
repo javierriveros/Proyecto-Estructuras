@@ -1,8 +1,6 @@
 package Ventana;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -13,14 +11,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
 import javax.swing.event.ChangeListener;
 
-import jm.util.Read;
-
 import javax.swing.event.ChangeEvent;
 import javax.swing.SwingUtilities;
 import static javax.swing.SwingUtilities.updateComponentTreeUI;
 import javax.swing.UIManager;
 
 public class Splash extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Cargar hilo;
 	private JProgressBar progressBar;

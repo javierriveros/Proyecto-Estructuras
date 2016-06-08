@@ -1,15 +1,10 @@
 package listas;
 
-import javax.swing.JOptionPane;
-
-import logica.Cancion;
-
 public class Lista {
 
 	private Nodo raiz;
 	private int numElementos;
 	private float amplitudMaxima;
-	private Cancion cancion;
 
 	public Lista() {
 		this.raiz = null;
@@ -17,8 +12,7 @@ public class Lista {
 		amplitudMaxima = 0;
 	}
 
-	public Lista(float[] valores, Cancion cancion) {
-		this.cancion = cancion;
+	public Lista(float[] valores) {
 		numElementos = 0;
 		raiz = null;
 		amplitudMaxima = 0;
@@ -151,6 +145,12 @@ public class Lista {
 		}
 	}
 
+	/**
+	 * Retorna el valor de la amplitud en la posición especifica.
+	 * 
+	 * @param posicion
+	 * @return dato de tipo float
+	 */
 	public float getAmplitudAt(int posicion) {
 		if (!isEmpty() && posicion >= 1 && posicion <= numElementos) {
 			Nodo recorrido = raiz;
@@ -164,65 +164,13 @@ public class Lista {
 		}
 	}
 
-	public void cortar(int segundoInicio, int segundoFinal) {
-		Nodo inicio;
-		Nodo fin;
-		if (segundoInicio == 0 && segundoFinal == cancion.getDuracion()) {
-			JOptionPane.showMessageDialog(null, "Tiene sentido cortar toda la canción??");
-		} else {
-			int posicion = (int) (this.numElementos / cancion.getDuracion());
-			posicion *= segundoInicio;
-			inicio = getNodoAt(posicion);
-			posicion = (int) (this.numElementos / cancion.getDuracion());
-			posicion *= segundoFinal;
-			fin = getNodoAt(posicion);
-			inicio.getEnlaceAnteriror().setEnlaceSiguiente(fin.getEnlaceSiguiente());
-			fin.setEnlaceSiguiente(null);
-			inicio.setEnlaceAnterior(null);
-			cancion.setNodoCopia(inicio);
-			getTamano();
-			cancion.guardadoTemporal();
-		}
-	}
-
-	public void copiar(int segundoInicio, int segundoFinal) {
-		Lista listaTemporal = new Lista();
-		int posicion = (int) (numElementos / cancion.getDuracion());
-		int pos = posicion * segundoInicio;
-		int pos2 = posicion * segundoFinal;
-		Nodo reco = raiz;
-		int contador = 1;
-		while(reco.getEnlaceSiguiente() != raiz) {
-			if(contador >= pos && contador <= pos2) {
-				listaTemporal.insertarUltimo(reco.getAmplitud());
-			}
-			contador++;
-		}
-	}
-	
-	public void pegarFromCopy(int posicion) {
-		
-	}
-
-	public void pegar(int posicion) {
-		Nodo nodo = cancion.getNodoCopia();
-		Nodo reco = raiz;
-		int pos = (int) (numElementos / cancion.getDuracion());
-		pos *= posicion;
-		for (int i = 1; i <= pos; i++) {
-			reco = reco.getEnlaceSiguiente();
-		}
-		nodo.setEnlaceAnterior(reco);
-		while (nodo.getEnlaceSiguiente() != null) {
-			nodo = nodo.getEnlaceSiguiente();
-		}
-		nodo.setEnlaceSiguiente(reco.getEnlaceSiguiente());
-		reco.setEnlaceSiguiente(nodo);
-		cancion.setNodoCopia(null);
-		getTamano();
-		cancion.guardadoTemporal();
-	}
-
+	/**
+	 * Retorna el nodo en la posición específica. Null si la posición es
+	 * inexistente.
+	 * 
+	 * @param posicion
+	 * @return Nodo
+	 */
 	public Nodo getNodoAt(int posicion) {
 		Nodo nodo = null;
 		if (posicion >= 1 && posicion <= numElementos && !isEmpty()) {
@@ -234,6 +182,13 @@ public class Lista {
 		return nodo;
 	}
 
+	/**
+	 * Forma alterna que tambien retorna el tamaño de la lista. Su proposito
+	 * principal era al eliminar un segmento de datos de la lista y tuviese que
+	 * actualizar el tamaño. No usado!
+	 * 
+	 * @return dato de tipo entero
+	 */
 	public int getTamano() {
 		Nodo reco = raiz;
 		numElementos = 1;
@@ -247,10 +202,21 @@ public class Lista {
 		return numElementos;
 	}
 
+	/**
+	 * Mayor amplitud de la canción.
+	 * 
+	 * @return dato de tipo float
+	 */
 	public float getAmplitudMaxima() {
 		return amplitudMaxima;
 	}
 
+	/**
+	 * Convierte la lista actual en un arreglo de float, cada dato de este
+	 * arreglo es la amplitud de la canción.
+	 * 
+	 * @return arreglo de tipo float
+	 */
 	public float[] toFloatArray() {
 		float[] data = new float[numElementos];
 		Nodo recorrido = raiz;
@@ -261,6 +227,9 @@ public class Lista {
 		return data;
 	}
 
+	/**
+	 * Método utilizado mientras se desarrollaba el proyecto.
+	 */
 	public void mostrar() {
 		Nodo recorrido = raiz;
 		while (recorrido.getEnlaceSiguiente() != raiz) {

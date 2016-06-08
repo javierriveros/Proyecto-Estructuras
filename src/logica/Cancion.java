@@ -1,4 +1,5 @@
 package logica;
+
 import java.io.File;
 import java.util.regex.Pattern;
 
@@ -6,20 +7,15 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 import jm.audio.io.AudioFileIn;
 import jm.audio.io.AudioFileOut;
-import jm.util.Play;
 import listas.Lista;
-import listas.Nodo;
 
 public class Cancion {
 	private String nombreDelAudio;
 	private int channelsNumber;
 	private int sampleRate;
 	private int depth;
-	private int samples;
 	private float duracion;
 	private Lista amplitudes;
-	private boolean entro;
-	private Nodo nodoCopia;
 	private String location;
 	private BasicPlayer player;
 
@@ -28,21 +24,30 @@ public class Cancion {
 		channelsNumber = archivo.getChannels();
 		sampleRate = archivo.getSampleRate();
 		depth = archivo.getBitResolution();
-		amplitudes = new Lista(archivo.getSampleData(), this);
+		amplitudes = new Lista(archivo.getSampleData());
 		String name[] = ruta.split(Pattern.quote("\\"));
 		nombreDelAudio = name[name.length - 1];
 		duracion = amplitudes.getTamano() / sampleRate;
-		nodoCopia = null;
 		location = ruta;
 		player = new BasicPlayer();
 		guardarTemporal();
 	}
 
+	/**
+	 * Metodo que retorna una lista la cual contiene todo los samples de la
+	 * canción.
+	 * 
+	 * @return Lista con los valores de amplitud
+	 */
 	public Lista getAmplitudes() {
 		return amplitudes;
 	}
 
+	/**
+	 * Guarda temporalmente la canción como un archivo .wav de nombre "elo".
+	 */
 	private void guardarTemporal() {
+		@SuppressWarnings("unused")
 		AudioFileOut salida = new AudioFileOut(amplitudes.toFloatArray(), "elo.wav", 1, sampleRate, depth);
 	}
 
@@ -58,43 +63,46 @@ public class Cancion {
 		return duracion;
 	}
 
-	public void cargarArchivo(){
-		try{
+	/**
+	 * Carga el archivo de audio para posteriormente reproducirlo, pausarlo,
+	 * resumirlo o detenerlo.
+	 */
+	public void cargarArchivo() {
+		try {
 			player.open(new File("elo.wav"));
-		} catch(Exception ex) {
-			
+		} catch (Exception ex) {
+
 		}
 	}
-	
+
+	/**
+	 * Una vez cargado el archivo se puede poner a reproducir con este método.
+	 */
 	public void play() {
 		try {
 			player.play();
-		} catch(Exception ex) {
-			
+		} catch (Exception ex) {
+
 		}
 	}
-	
+
+	/**
+	 * Si el audio es pausado, este puede reanudar desde el ultimo lugar
+	 * reproducido con este metodo.
+	 */
 	public void resume() {
-		try{
+		try {
 			player.resume();
-		} catch(Exception ex) {
-			
+		} catch (Exception ex) {
+
 		}
-	}
-	
-	public void setNodoCopia(Nodo nodo) {
-		this.nodoCopia = nodo;
-	}
-	
-	public Nodo getNodoCopia() {
-		return nodoCopia;
 	}
 
 	public void pause() {
 		try {
 			player.pause();
 		} catch (BasicPlayerException e) {
-			
+
 		}
 	}
 
@@ -108,12 +116,9 @@ public class Cancion {
 	}
 
 	public String toString() {
-		String info = "Nombre del archivo: " + this.nombreDelAudio
-				+ "\nDuración: " + this.duracion
-				+ "\nNúmero de canales: " + this.channelsNumber
-				+ "Resolución de bits: " + this.depth
-				+ "\nUbicación:  " + this.location
-				+ "\nPropietario: " + System.getProperty("user.name");
+		String info = "Nombre del archivo: " + this.nombreDelAudio + "\nDuración: " + this.duracion
+				+ "\nNúmero de canales: " + this.channelsNumber + "Resolución de bits: " + this.depth + "\nUbicación:  "
+				+ this.location + "\nPropietario: " + System.getProperty("user.name");
 		return info;
 	}
 }

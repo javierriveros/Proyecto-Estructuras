@@ -1,6 +1,5 @@
 package Ventana;
 
-import java.awt.EventQueue;
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,22 +16,21 @@ import javax.swing.JOptionPane;
 
 import java.awt.Toolkit;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import jm.util.Read;
 import logica.Cancion;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowEvent;
 
 public class Principal extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// JFrame frmAuditorAlpha;
 
@@ -48,11 +46,9 @@ public class Principal extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		// frmAuditorAlpha = new JFrame();
 		getContentPane().setBackground(Color.WHITE);
 		setTitle("AudiTor");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		// frmAuditorAlpha.setBounds(100, 100, 708, 417);
 		setLocationRelativeTo(null);
 		setSize(700,600);
 
