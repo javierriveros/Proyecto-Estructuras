@@ -187,7 +187,21 @@ public class Lista {
 	
 	public void pegar(int posicion) {
 		Nodo nodo = cancion.getNodoCopia();
-		
+		Nodo reco = raiz;
+		int pos = (int) (numElementos / cancion.getDuracion());
+		pos *= posicion;
+		for(int i = 1; i <= pos; i++) {
+			reco = reco.getEnlaceSiguiente();
+		}
+		nodo.setEnlaceAnterior(reco);
+		while(nodo.getEnlaceSiguiente() != null) {
+			nodo = nodo.getEnlaceSiguiente();
+		}
+		nodo.setEnlaceSiguiente(reco.getEnlaceSiguiente());
+		reco.setEnlaceSiguiente(nodo);
+		cancion.setNodoCopia(null);
+		getTamano();
+		cancion.guardadoTemporal();
 	}
 
 	public Nodo getNodoAt(int posicion) {
