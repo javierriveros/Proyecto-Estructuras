@@ -1,5 +1,9 @@
 package logica;
+import java.io.File;
 import java.util.regex.Pattern;
+
+import javazoom.jlgui.basicplayer.BasicPlayer;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
 import jm.audio.io.AudioFileIn;
 import jm.audio.io.AudioFileOut;
 import jm.util.Play;
@@ -17,6 +21,7 @@ public class Cancion {
 	private boolean entro;
 	private Nodo nodoCopia;
 	private String location;
+	private BasicPlayer player;
 
 	public Cancion(String ruta) {
 		AudioFileIn archivo = new AudioFileIn(ruta);
@@ -29,6 +34,7 @@ public class Cancion {
 		duracion = amplitudes.getTamano() / sampleRate;
 		nodoCopia = null;
 		location = ruta;
+		player = new BasicPlayer();
 		guardarTemporal();
 	}
 
@@ -53,7 +59,13 @@ public class Cancion {
 	}
 
 	public void play() {
-		
+		try {
+			player.open(new File("elo.wav"));
+			player.play();
+		} catch (BasicPlayerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void setNodoCopia(Nodo nodo) {
