@@ -4,5 +4,13 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="src/librerias/jMusic1.6.4.jar"/>
 	<classpathentry kind="lib" path="src/librerias/basicplayer3.0.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/commons-logging-api.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/jl1.0.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/jspeex0.9.7.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/mp3spi1.9.4.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/tritonus_share.jar"/>
+	<classpathentry kind="lib" path="src/librerias/lib/vorbisspi1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
